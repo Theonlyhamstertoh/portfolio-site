@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-site",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.9.0"
+  },
+  "dependencies": {
+    "@react-spring/three": "^9.4.4",
+    "@react-three/drei": "^9.3.3",
+    "@react-three/fiber": "^8.0.10",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
