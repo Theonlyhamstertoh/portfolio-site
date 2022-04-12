@@ -12,10 +12,13 @@
     "vite": "^2.9.0"
   },
   "dependencies": {
+    "@babel/core": "^7.17.9",
     "@react-spring/three": "^9.4.4",
     "@react-three/drei": "^9.3.3",
     "@react-three/fiber": "^8.0.10",
+    "randomcolor": "^0.6.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "vite-plugin-glsl": "^0.1.2"
   }
 }
