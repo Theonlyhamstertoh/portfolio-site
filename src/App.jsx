@@ -17,7 +17,7 @@ function App() {
   useHelper(main_Light, THREE.DirectionalLightHelper);
   return (
     <>
-      <OrbitControls />
+      <OrbitControls enablePan={false} />
 
       <fog attach="fog" args={["#ffcc4f", 0, 50]} />
       <color attach="background" args={[0x000000]} />
