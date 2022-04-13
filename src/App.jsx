@@ -1,25 +1,36 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import randomColor from "randomcolor";
-import { CameraShake, Html, OrbitControls, Scroll, ScrollControls } from "@react-three/drei";
+import * as THREE from "three";
+import {
+  CameraShake,
+  Html,
+  OrbitControls,
+  Scroll,
+  ScrollControls,
+  useHelper,
+} from "@react-three/drei";
 import { MorphingBall } from "./MorphingBall";
 function App() {
   const [count, setCount] = useState(0);
-
+  const main_Light = useRef();
+  useHelper(main_Light, THREE.DirectionalLightHelper);
   return (
-    <Canvas>
+    <>
       <OrbitControls />
 
-      <fog attach="fog" args={["#7121cc", 0, 50]} />
+      <fog attach="fog" args={["#ffcc4f", 0, 50]} />
       <color attach="background" args={[0x000000]} />
-      <ambientLight />
-      <Suspense>
-        <MorphingBall />
-      </Suspense>
-      <CameraShake yawFrequency={0.2} pitchFrequency={0.2} rollFrequency={0.2} />
-    </Canvas>
+      <directionalLight castShadow ref={main_Light} position={[0, 5, 10]} />
+      {/* <gridHelper args={[25, 25]} /> */}
+      <MorphingBall />
+      {/* {<axesHelper args={[10]} />} */}
+      {/* <CameraShake yawFrequency={0.2} pitchFrequency={0.2} rollFrequency={0.2} /> */}
+    </>
   );
 }
+
+function Scene() {}
 
 function Box() {
   const color = randomColor();
