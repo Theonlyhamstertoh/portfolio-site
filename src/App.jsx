@@ -1,11 +1,12 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import randomColor from "randomcolor";
 import * as THREE from "three";
 import {
   CameraShake,
   Html,
   OrbitControls,
+  PerspectiveCamera,
   Scroll,
   ScrollControls,
   useHelper,
@@ -14,18 +15,30 @@ import { MorphingBall } from "./MorphingBall";
 function App() {
   const [count, setCount] = useState(0);
   const main_Light = useRef();
-  // useHelper(main_Light, THREE.DirectionalLightHelper);
+  useHelper(main_Light, THREE.PointLightHelper);
+
+  const virtualCamera = useRef();
+
+  useEffect(() => {
+    console.log(virtualCamera.current.position);
+  });
+
   return (
     <>
-      <OrbitControls />
-
-      <fog attach="fog" args={["#ffcc4f", 0, 50]} />
+      <OrbitControls
+        maxDistance={17.5}
+        minDistance={12.5}
+        camera={virtualCamera.current}
+        enablePan={false}
+        enable
+      />
+      <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 15, 0]}>
+        <pointLight castShadow intensity={1} />
+      </PerspectiveCamera>
       <color attach="background" args={[0x000000]} />
-      <directionalLight castShadow ref={main_Light} position={[0, 5, 10]} />
       {/* <gridHelper args={[25, 25]} /> */}
       <MorphingBall />
       {/* {<axesHelper args={[10]} />} */}
-      {/* <CameraShake yawFrequency={0.2} pitchFrequency={0.2} rollFrequency={0.2} /> */}
     </>
   );
 }

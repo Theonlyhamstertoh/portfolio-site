@@ -1,6 +1,7 @@
 import { useSpring, a, config } from "@react-spring/three";
 import {
   GradientTexture,
+  Html,
   Icosahedron,
   MeshDistortMaterial,
   MeshWobbleMaterial,
@@ -10,6 +11,8 @@ import { extend, useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import randomColor from "randomcolor";
+import { TubeBufferGeometry } from "three";
+import { TorusKnotBufferGeometry } from "three";
 
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 export function MorphingBall() {
@@ -25,8 +28,10 @@ export function MorphingBall() {
     config: { mass: 5, tension: 400, friction: 10 },
   });
 
-  const { color } = useSpring({
-    color: randomColor({ luminosity: "light", config: config.slow }),
+  const { lightColor, darkerColor } = useSpring({
+    lightColor: randomColor({ luminosity: "light" }),
+    darkerColor: randomColor({ luminosity: "random" }),
+    config: config.slow,
   });
 
   useEffect(() => {
@@ -41,8 +46,8 @@ export function MorphingBall() {
     noiseBall.current.rotation.y = t / 10;
     noiseBall.current.rotation.z = t / 10;
     noiseBall.current.position.y = Math.sin(t * 3) / 10;
-    // noisePoints.current.rotation.y = noiseBall.current.rotation.y;
-    // noisePoints.current.rotation.z = noiseBall.current.rotation.z;
+    noisePoints.current.rotation.y = noiseBall.current.rotation.y;
+    noisePoints.current.rotation.z = noiseBall.current.rotation.z;
   });
 
   const uniforms = useMemo(
@@ -56,11 +61,14 @@ export function MorphingBall() {
 
   return (
     <group>
-      {/* <points ref={noisePoints} receiveShadow>
-        <icosahedronBufferGeometry args={[4, 19]} />
-        <pointsMaterial size={0.03} color={color} />
-      </points> */}
+      <points ref={noisePoints} receiveShadow>
+        <octahedronBufferGeometry args={[4.3, 50]} />
+
+        <a.pointsMaterial size={0.03} color="#000000" />
+      </points>
+
       <a.mesh
+        receiveShadow
         ref={noiseBall}
         scale={scale}
         onPointerOver={(e) => setHovered(!hovered)}
@@ -69,8 +77,9 @@ export function MorphingBall() {
         <Animated_MeshDistortMaterial
           wireframe={wireframe}
           speed={3}
-          color={color}
-          distort={0.5}></Animated_MeshDistortMaterial>
+          color={lightColor}
+          distort={0.5}
+          metalness={0.3}></Animated_MeshDistortMaterial>
       </a.mesh>
     </group>
   );
