@@ -14,10 +14,10 @@ import { MorphingBall } from "./MorphingBall";
 function App() {
   const [count, setCount] = useState(0);
   const main_Light = useRef();
-  useHelper(main_Light, THREE.DirectionalLightHelper);
+  // useHelper(main_Light, THREE.DirectionalLightHelper);
   return (
     <>
-      <OrbitControls enablePan={false} />
+      <OrbitControls />
 
       <fog attach="fog" args={["#ffcc4f", 0, 50]} />
       <color attach="background" args={[0x000000]} />
