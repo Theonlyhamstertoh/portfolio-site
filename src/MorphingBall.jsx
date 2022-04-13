@@ -11,33 +11,36 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import randomColor from "randomcolor";
 
+const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 export function MorphingBall() {
   const noiseBall = useRef();
   const noisePoints = useRef();
-  const newColor = useMemo(() => randomColor());
-  const currentColor = useMemo(() => new THREE.Color(randomColor()));
   const [hovered, setHovered] = useState(false);
-  const { scale, distort, speed } = useSpring({
+  const { scale, distort, speed, wireframe } = useSpring({
     // wireframe: hovered ? true : false,
-    scale: hovered ? 1.2 : 1,
+    scale: hovered ? 1.15 : 1,
     distort: hovered ? 0.7 : 0.5,
     speed: hovered ? 5 : 3,
-    config: config.wobbly,
+    wireframe: hovered ? false : true,
+    config: { mass: 5, tension: 400, friction: 10 },
+  });
+
+  const { color } = useSpring({
+    color: randomColor({ luminosity: "light", config: config.slow }),
   });
 
   useEffect(() => {
-    console.log(newColor, currentColor);
+    // console.log((noiseBall.current.speed = 8));
+    // console.log((noiseBall.current.material.distort = 0.7));
   });
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    const noiseBallColor = noiseBall.current.material.color;
-    hovered && noiseBallColor.lerp(currentColor.set(newColor).convertSRGBToLinear(), 0.01);
+    const noiseBallMaterial = noiseBall.current.material;
 
-    // THREE.MathUtils.lerp(noiseBall.current.material.color, new THREE.Color("#326aef"));
+    THREE.MathUtils.lerp(noiseBallMaterial.distort);
     noiseBall.current.rotation.y = t / 10;
     noiseBall.current.rotation.z = t / 10;
-    noiseBall.current.position.y = Math.sin(t / 2);
-    noiseBall.current.position.x = Math.cos(t / 10);
+    noiseBall.current.position.y = Math.sin(t * 3) / 10;
     // noisePoints.current.rotation.y = noiseBall.current.rotation.y;
     // noisePoints.current.rotation.z = noiseBall.current.rotation.z;
   });
@@ -63,10 +66,11 @@ export function MorphingBall() {
         onPointerOver={(e) => setHovered(!hovered)}
         onPointerOut={(e) => setHovered(!hovered)}>
         <icosahedronBufferGeometry args={[4, 30]} />
-        <MeshDistortMaterial
-          // wireframe
+        <Animated_MeshDistortMaterial
+          wireframe={wireframe}
           speed={3}
-          distort={0.5}></MeshDistortMaterial>
+          color={color}
+          distort={0.5}></Animated_MeshDistortMaterial>
       </a.mesh>
     </group>
   );
