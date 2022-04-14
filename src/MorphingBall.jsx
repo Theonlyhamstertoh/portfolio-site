@@ -56,7 +56,7 @@ export function MorphingBall({ url, ...props }) {
 
   const updateBallSize = useCallback(() => {
     if (window.innerWidth < 420) {
-      setMobile({ on: true, divideBy: 1.5 });
+      setMobile({ on: true, divideBy: 2 });
     } else {
       setMobile({ on: false, divideBy: 1 });
     }
