@@ -41,8 +41,8 @@ export function MorphingBall({ url, ...props }) {
    *
    */
   const { gain, context, update } = suspend(
-    () => createAudio("/audio/alladin.mp3"),
-    ["/audio/alladin.mp3"]
+    () => createAudio("/audio/aladdin.mp3"),
+    ["/audio/aladdin.mp3"]
   );
   useEffect(() => {
     // Connect the gain node, which plays the audio
@@ -106,6 +106,7 @@ async function createAudio(url) {
   const gain = context.createGain();
   const analyser = context.createAnalyser();
   analyser.fftSize = 64;
+  console.log(gain);
   source.connect(analyser);
   analyser.connect(gain);
 

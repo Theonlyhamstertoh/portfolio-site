@@ -30,9 +30,7 @@ function Scene() {
   const virtualCamera = useRef();
   return (
     <>
-      <Html>
-        <button onClick={(e) => setPlay(true)}></button>
-      </Html>
+      <Html>{!play && <button onClick={(e) => setPlay(true)}>Play</button>}</Html>
       <OrbitControls
         maxDistance={17.5}
         minDistance={12.5}
