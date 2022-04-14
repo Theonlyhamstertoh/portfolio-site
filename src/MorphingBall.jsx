@@ -28,7 +28,7 @@ export function MorphingBall({ url, ...props }) {
     // wireframe: hovered ? true : false,
     scale: hovered ? 1.15 / isMobile.divideBy : 1 / isMobile.divideBy,
     distort: hovered ? 0 : 0,
-    speed: hovered ? 0 : 0,
+    speed: hovered ? 5 : 5,
     wireframe: hovered ? false : true,
     config: { mass: 3, tension: 300, friction: 10 },
   });
@@ -74,7 +74,6 @@ export function MorphingBall({ url, ...props }) {
 
     let avg = update();
     noiseBall.current.material.distort = avg / 175;
-    noiseBall.current.material.speed = avg / 5;
   });
 
   return (
@@ -115,7 +114,7 @@ async function createAudio(url) {
   // Create gain node and an analyser
   const gain = context.createGain();
   const analyser = context.createAnalyser();
-  analyser.fftSize = 64;
+  analyser.fftSize = 128;
   source.connect(analyser);
   analyser.connect(gain);
 
