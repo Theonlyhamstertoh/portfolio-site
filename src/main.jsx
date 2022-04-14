@@ -6,8 +6,6 @@ import { Canvas } from "@react-three/fiber";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Canvas>
-      <App />
-    </Canvas>
+    <App />
   </React.StrictMode>
 );

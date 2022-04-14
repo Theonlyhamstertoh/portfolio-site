@@ -13,18 +13,28 @@ import {
 } from "@react-three/drei";
 import { MorphingBall } from "./MorphingBall";
 function App() {
+  return (
+    <Canvas>
+      <Scene />
+    </Canvas>
+  );
+}
+
+function Scene() {
   const [count, setCount] = useState(0);
   const main_Light = useRef();
+  const [play, setPlay] = useState(false);
+
   useHelper(main_Light, THREE.PointLightHelper);
 
   const virtualCamera = useRef();
-
-  useEffect(() => {
-    console.log(virtualCamera.current.position);
-  });
-
   return (
     <>
+      {!play && (
+        <Html>
+          <button onClick={(e) => setPlay(true)}>Play</button>
+        </Html>
+      )}
       <OrbitControls
         maxDistance={17.5}
         minDistance={12.5}
@@ -37,13 +47,11 @@ function App() {
       </PerspectiveCamera>
       <color attach="background" args={[0x000000]} />
       {/* <gridHelper args={[25, 25]} /> */}
-      <MorphingBall />
+      <Suspense fallback={null}>{play && <MorphingBall />}</Suspense>
       {/* {<axesHelper args={[10]} />} */}
     </>
   );
 }
-
-function Scene() {}
 
 function Box() {
   const color = randomColor();
