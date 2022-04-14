@@ -49,7 +49,6 @@ export function MorphingBall({ url, ...props }) {
     return () => gain.disconnect();
   }, [gain, context]);
 
-  useEffect(() => console.log(isMobile));
   useEffect(() => {
     window.addEventListener("resize", updateBallSize);
     return () => window.addEventListener("resize", updateBallSize);
@@ -117,7 +116,6 @@ async function createAudio(url) {
   const gain = context.createGain();
   const analyser = context.createAnalyser();
   analyser.fftSize = 64;
-  console.log(gain);
   source.connect(analyser);
   analyser.connect(gain);
 
