@@ -11,7 +11,7 @@ import {
   ScrollControls,
   useHelper,
 } from "@react-three/drei";
-import { MorphingBall } from "./MorphingBall";
+import { MorphingBall, PlaySound } from "./MorphingBall";
 function App() {
   return (
     <Canvas>
@@ -23,18 +23,12 @@ function App() {
 function Scene() {
   const [count, setCount] = useState(0);
   const main_Light = useRef();
-  const [play, setPlay] = useState(false);
 
   useHelper(main_Light, THREE.PointLightHelper);
 
   const virtualCamera = useRef();
   return (
     <>
-      {!play && (
-        <Html>
-          <button onClick={(e) => setPlay(true)}>Play</button>
-        </Html>
-      )}
       <OrbitControls
         maxDistance={17.5}
         minDistance={12.5}
@@ -47,7 +41,7 @@ function Scene() {
       </PerspectiveCamera>
       <color attach="background" args={[0x000000]} />
       {/* <gridHelper args={[25, 25]} /> */}
-      <Suspense fallback={null}>{play && <MorphingBall />}</Suspense>
+      <PlaySound url="./audio/alladin.mp3" />
       {/* {<axesHelper args={[10]} />} */}
     </>
   );

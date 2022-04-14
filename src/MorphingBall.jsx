@@ -6,17 +6,16 @@ import {
   MeshDistortMaterial,
   MeshWobbleMaterial,
   shaderMaterial,
+  PositionalAudio,
 } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import randomColor from "randomcolor";
-import { TubeBufferGeometry } from "three";
-import { TorusKnotBufferGeometry } from "three";
 import { suspend } from "suspend-react";
-import alladin_mp3 from "./audio/alladin.mp3";
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
-export function MorphingBall({ url, ...props }) {
+
+export function MorphingBall({ url, sound }) {
   // 3D mesh points
   const noiseBall = useRef();
   const noisePoints = useRef();
@@ -27,7 +26,7 @@ export function MorphingBall({ url, ...props }) {
     // wireframe: hovered ? true : false,
     scale: hovered ? 1.15 : 1,
     distort: hovered ? 0 : 0,
-    speed: hovered ? 5 : 3,
+    speed: hovered ? 0 : 0,
     wireframe: hovered ? false : true,
     config: { mass: 3, tension: 300, friction: 10 },
   });
@@ -36,18 +35,6 @@ export function MorphingBall({ url, ...props }) {
     lightColor: randomColor({ luminosity: "light" }),
     config: config.slow,
   });
-
-  /*
-   * Music Track
-   *
-   */
-  const { gain, context, update } = suspend(() => createAudio(alladin_mp3), [alladin_mp3]);
-  useEffect(() => {
-    // Connect the gain node, which plays the audio
-    gain.connect(context.destination);
-    // Disconnect it on unmount
-    return () => gain.disconnect();
-  }, [gain, context]);
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
@@ -60,10 +47,22 @@ export function MorphingBall({ url, ...props }) {
     // noisePoints.current.rotation.y = noiseBall.current.rotation.y;
     // noisePoints.current.rotation.z = noiseBall.current.rotation.z;
 
-    let avg = update();
-    noiseBall.current.material.distort = avg / 175;
-    noiseBall.current.material.speed = avg / 5;
+    if (analyser.current) {
+      const data = analyser.current.getAverageFrequency();
+      (data / 100) * 2;
+      noiseBall.current.material.distort = data / 56;
+      noiseBall.current.material.speed = data / 10;
+    }
   });
+
+  // <Analyzer /> will not run before everything else in the suspense block is resolved.
+  // That means <PositionalAudio/>, which executes async, is ready by the time we're here.
+  // The next frame (useEffect) is guaranteed(!) to access positional-audios ref.
+  const analyser = useRef();
+  useEffect(() => {
+    analyser.current = new THREE.AudioAnalyser(sound.current, 64);
+    console.log(analyser);
+  }, []);
 
   return (
     <group>
@@ -91,35 +90,33 @@ export function MorphingBall({ url, ...props }) {
   );
 }
 
-async function createAudio(url) {
-  const res = await fetch(url);
-  const buffer = await res.arrayBuffer();
-  const context = new (window.AudioContext || window.webkitAudioContext)();
-  const source = context.createBufferSource();
-  source.buffer = await new Promise((res) => context.decodeAudioData(buffer, res));
-  source.loop = true;
-  console.log("yes");
-  source.start(0);
+export function PlaySound({ url }) {
+  // This component creates a suspense block, blocking execution until
+  // all async tasks (in this case PositionAudio) have been resolved.
+  const sound = useRef();
+  const [play, setPlay] = useState(false);
 
-  // Create gain node and an analyser
-  const gain = context.createGain();
-  const analyser = context.createAnalyser();
-  analyser.fftSize = 64;
-  source.connect(analyser);
-  analyser.connect(gain);
-
-  // The data array receive the audio frequencies
-  const data = new Uint8Array(analyser.frequencyBinCount);
-  return {
-    context,
-    source,
-    gain,
-    data,
-    // This function gets called every frame per audio source
-    update: () => {
-      analyser.getByteFrequencyData(data);
-      // Calculate a frequency average
-      return (data.avg = data.reduce((prev, cur) => prev + cur / data.length, 0));
-    },
-  };
+  useFrame(() => {
+    // play && console.log(sound.current);
+  });
+  return (
+    <Suspense fallback={null}>
+      {!play && (
+        <Html>
+          <button onClick={(e) => setPlay(true)}>Play</button>
+        </Html>
+      )}
+      {play && (
+        <PositionalAudio
+          setVolume={50}
+          gain={10}
+          autoplay
+          loopEnd={undefined}
+          url={"/audio/alladin.mp3"}
+          ref={sound}
+        />
+      )}
+      {play && <MorphingBall sound={sound} />}
+    </Suspense>
+  );
 }
