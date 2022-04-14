@@ -25,6 +25,13 @@ body,
   /* display: flex; */
 }
  
+
+.name {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex: center;
+}
 h1 {
   font-family: 'Khula', cursive;
   color: white;

@@ -15,16 +15,18 @@ import { TubeBufferGeometry } from "three";
 import { TorusKnotBufferGeometry } from "three";
 import { suspend } from "suspend-react";
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
+
 export function MorphingBall({ url, ...props }) {
   // 3D mesh points
   const noiseBall = useRef();
   const noisePoints = useRef();
+  const [isMobile, setMobile] = useState({ on: false, divideBy: 1 });
 
   // hover state for handling
   const [hovered, setHovered] = useState(false);
   const { scale, distort, speed, wireframe } = useSpring({
     // wireframe: hovered ? true : false,
-    scale: hovered ? 1.15 : 1,
+    scale: hovered ? 1.15 / isMobile.divideBy : 1 / isMobile.divideBy,
     distort: hovered ? 0 : 0,
     speed: hovered ? 0 : 0,
     wireframe: hovered ? false : true,
@@ -36,10 +38,6 @@ export function MorphingBall({ url, ...props }) {
     config: config.slow,
   });
 
-  /*
-   * Music Track
-   *
-   */
   const { gain, context, update } = suspend(
     () => createAudio("/audio/aladdin.mp3"),
     ["/audio/aladdin.mp3"]
@@ -51,6 +49,19 @@ export function MorphingBall({ url, ...props }) {
     return () => gain.disconnect();
   }, [gain, context]);
 
+  useEffect(() => console.log(isMobile));
+  useEffect(() => {
+    window.addEventListener("resize", updateBallSize);
+    return () => window.addEventListener("resize", updateBallSize);
+  }, []);
+
+  const updateBallSize = useCallback(() => {
+    if (window.innerWidth < 420) {
+      setMobile({ on: true, divideBy: 1.5 });
+    } else {
+      setMobile({ on: false, divideBy: 1 });
+    }
+  });
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     const noiseBallMaterial = noiseBall.current.material;
