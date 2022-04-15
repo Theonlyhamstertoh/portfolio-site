@@ -41,6 +41,7 @@ function Scene() {
       <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 15, 0]}>
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
+      <ambientLight intensity={0.15} />
       <color attach="background" args={[0x000000]} />
       {/* <gridHelper args={[25, 25]} /> */}
       <Suspense fallback={null}>{play && <MorphingBall />}</Suspense>
