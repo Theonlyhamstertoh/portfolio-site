@@ -28,7 +28,7 @@ export function MorphingBall({ url, ...props }) {
     // wireframe: hovered ? true : false,
     scale: hovered ? 1.15 / isMobile.divideBy : 1 / isMobile.divideBy,
     distort: hovered ? 0 : 0,
-    speed: hovered ? 5 : 5,
+    speed: hovered ? 8 : 8,
     wireframe: hovered ? false : true,
     config: { mass: 3, tension: 300, friction: 10 },
   });
