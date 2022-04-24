@@ -2,18 +2,17 @@ import { useSpring, a, config } from "@react-spring/three";
 import { MeshDistortMaterial } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import useStore, { useAudio } from "./useStore";
 import useCustomSpring from "../hooks/useCustomSpring";
-
+import useAudio from "../hooks/useAudio";
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
-
+const SPEED = 3;
 export function MorphingBall() {
   const noiseBall = useRef();
   // hover state for handling
   const { hovered, setHovered, spring, color } = useCustomSpring();
 
-  const { update = null } = useAudio();
+  const { gain, update = null } = useAudio();
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
@@ -26,7 +25,7 @@ export function MorphingBall() {
     // distort the ball
     if (update) {
       const avg = update();
-      noiseBallMaterial.distort = Math.min(avg / 150, 0.85);
+      noiseBallMaterial.distort = Math.min(avg / 160, 0.85);
     }
   });
 
@@ -36,10 +35,10 @@ export function MorphingBall() {
         receiveShadow
         ref={noiseBall}
         scale={spring.scale}
-        onPointerOver={(e) => setHovered(!hovered)}
-        onPointerOut={(e) => setHovered(!hovered)}
+        onPointerOver={(e) => setHovered(true)}
+        onPointerOut={(e) => setHovered(false)}
       >
-        <icosahedronBufferGeometry args={[4, 30]} />
+        <icosahedronBufferGeometry args={[4, 40]} />
         <Animated_MeshDistortMaterial
           wireframe={spring.wireframe}
           speed={12}
