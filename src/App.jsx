@@ -1,17 +1,8 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
-import randomColor from "randomcolor";
-import * as THREE from "three";
-import {
-  CameraShake,
-  Html,
-  OrbitControls,
-  PerspectiveCamera,
-  Scroll,
-  ScrollControls,
-  useHelper,
-} from "@react-three/drei";
-import { MorphingBall } from "./MorphingBall";
+import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { MorphingBall } from "./components/MorphingBall";
+import useStore from "./components/useStore";
 function App() {
   return (
     <Canvas>
@@ -21,21 +12,17 @@ function App() {
 }
 
 function Scene() {
-  const [count, setCount] = useState(0); 
-  const main_Light = useRef();
-  const [play, setPlay] = useState(false);
-
-  useHelper(main_Light, THREE.PointLightHelper);
-
+  const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
   const virtualCamera = useRef();
   return (
     <>
-      <Html>{!play && <button onClick={(e) => setPlay(true)}>Play</button>}</Html>
+      <LoadingScreen mode={mode} setMode={setMode} />
       <OrbitControls
         maxDistance={17.5}
         minDistance={12.5}
         camera={virtualCamera.current}
         enablePan={false}
+        autoRotate
         enable
       />
       <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 15, 0]}>
@@ -43,26 +30,16 @@ function Scene() {
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <color attach="background" args={[0x000000]} />
-      {/* <gridHelper args={[25, 25]} /> */}
-      <Suspense fallback={null}>{play && <MorphingBall />}</Suspense>
-      {/* {<axesHelper args={[10]} />} */}
+      <Suspense fallback={null}>
+        <MorphingBall mode={mode} />
+      </Suspense>
     </>
   );
 }
 
-function Box() {
-  const color = randomColor();
-  const randomXYPosition = [
-    Math.floor((Math.random() - 0.5) * 15),
-    Math.floor((Math.random() - 0.5) * 15),
-    0,
-  ];
-  return (
-    <mesh position={randomXYPosition}>
-      <boxBufferGeometry />
-      <meshBasicMaterial color={color} />
-    </mesh>
-  );
-}
+function LoadingScreen({ mode, setMode }) {
+  console.log(setMode);
 
+  return <Html>{!mode && <button onClick={(e) => setMode("start")}>Start</button>}</Html>;
+}
 export default App;
