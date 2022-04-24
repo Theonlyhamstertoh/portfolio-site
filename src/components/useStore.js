@@ -1,23 +1,27 @@
 import create from "zustand";
 import { suspend } from "suspend-react";
-import randomColor from "randomcolor"
+import randomColor from "randomcolor";
 import { createAudio } from "../createAudio";
 import { useSpring, config } from "@react-spring/three";
 import { useState, useEffect, useCallback } from "react";
 export const useStore = create((set, get) => ({
   playMusic: false,
   mode: false,
-  audioData: () => suspend(() => createAudio("/audio/aladdin.mp3"), ["/audio/aladdin.mp3"]),
   getAudioData: () => audioData,
   setMode: (mode) => set((state) => ({ mode: mode })),
   setPlay: (mode) => set((state) => ({ playMusic: mode })),
 }));
 
+function intializeAudioData() {
+  return suspend(
+    () => createAudio("/audio/aladdin.mp3"),
+    ["/audio/aladdin.mp3"]
+  );
+}
 
-function useAudio() {
-  const mode = useStore(state => state.mode)
-  const audioData = useStore(state => state.audioData)
-   const { gain, context, update } = mode === "start" && audioData();
+export function useAudio() {
+  const mode = useStore((state) => state.mode);
+  const { gain, context, update } = mode === "start" && intializeAudioData();
   useEffect(() => {
     console.log(mode);
     if (mode === "start") {
@@ -28,7 +32,7 @@ function useAudio() {
     }
   }, [gain, context, mode]);
 
-  return {gain, context, update}
+  return { gain, context, update };
 }
 
 export default useStore;

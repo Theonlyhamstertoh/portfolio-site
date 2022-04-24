@@ -2,56 +2,33 @@ import { useSpring, a, config } from "@react-spring/three";
 import { MeshDistortMaterial } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import randomColor from "randomcolor";
-import { suspend } from "suspend-react";
-import createAudio from "../js/createAudio";
-import useStore from "./useStore";
-import useCustomSpring  from "../hooks/useCustomSpring";
+import useStore, { useAudio } from "./useStore";
+import useCustomSpring from "../hooks/useCustomSpring";
 
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 
-export function MorphingBall({ mode }) {
+export function MorphingBall() {
   const noiseBall = useRef();
-  const [audioData] = useStore((state) => [
-    state.audioData,
-  ]);
-
   // hover state for handling
- const { hovered, setHovered, spring, color} = useCustomSpring();
+  const { hovered, setHovered, spring, color } = useCustomSpring();
 
+  const { update = null } = useAudio();
 
-  // const { gain, context, update } = mode === "start" && audioData();
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    const noiseBallMaterial = noiseBall.current.material;
 
-  console.log(mode === "start" && audioData())
+    noiseBall.current.rotation.y = t / 10;
+    noiseBall.current.rotation.z = t / 10;
+    noiseBall.current.position.y = Math.sin(t * 3) / 10;
 
-
-  // useEffect(() => {
-  //   console.log(mode);
-  //   if (mode === "start") {
-  //     // Connect the gain node, which plays the audio
-  //     gain.connect(context.destination);
-  //     // Disconnect it on unmount
-  //     return () => gain.disconnect();
-  //   }
-  // }, [gain, context, mode]);
-
-
-  // useFrame(({ clock }) => {
-  //   const t = clock.getElapsedTime();
-  //   const noiseBallMaterial = noiseBall.current.material;
-
-  //   THREE.MathUtils.lerp(noiseBallMaterial.distort);
-  //   noiseBall.current.rotation.y = t / 10;
-  //   noiseBall.current.rotation.z = t / 10;
-  //   noiseBall.current.position.y = Math.sin(t * 3) / 10;
-
-  //   if (update) {
-  //     const avg = update();
-  //     noiseBall.current.material.distort = avg / 175;
-  //   }
-  // });
+    // distort the ball
+    if (update) {
+      const avg = update();
+      noiseBallMaterial.distort = Math.min(avg / 150, 0.85);
+    }
+  });
 
   return (
     <group>
@@ -61,14 +38,14 @@ export function MorphingBall({ mode }) {
         scale={spring.scale}
         onPointerOver={(e) => setHovered(!hovered)}
         onPointerOut={(e) => setHovered(!hovered)}
-        >
+      >
         <icosahedronBufferGeometry args={[4, 30]} />
         <Animated_MeshDistortMaterial
           wireframe={spring.wireframe}
-          speed={spring.speed}
+          speed={12}
           color={color}
-          distort={spring.distort}
-          metalness={0.3}></Animated_MeshDistortMaterial>
+          metalness={0.3}
+        ></Animated_MeshDistortMaterial>
       </a.mesh>
     </group>
   );

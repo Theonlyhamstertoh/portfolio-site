@@ -12,14 +12,13 @@ function App() {
 }
 
 function Scene() {
-  const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
   const virtualCamera = useRef();
 
   
   
   return (
     <>
-      <LoadingScreen mode={mode} setMode={setMode} />
+      <LoadingScreen  />
       <OrbitControls
         maxDistance={20}
         minDistance={13}
@@ -33,14 +32,15 @@ function Scene() {
       <ambientLight intensity={0.15} />
       <color attach="background" args={[0x000000]} />
       <Suspense fallback={null}>
-        <MorphingBall mode={mode} />
+        <MorphingBall/>
       </Suspense>
     </>
   );
 }
 
-function LoadingScreen({ mode, setMode }) {
-  console.log(mode);
+function LoadingScreen() {
+  const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
+
 
   return <Html>{!mode && <button onClick={(e) => setMode("start")}>Start</button>}</Html>;
 }
