@@ -1,4 +1,4 @@
-export async function createAudio(url) {
+export default async function createAudio(url) {
   const res = await fetch(url);
   const buffer = await res.arrayBuffer();
   const context = new (window.AudioContext || window.webkitAudioContext)();
