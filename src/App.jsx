@@ -40,7 +40,7 @@ function Scene() {
 }
 
 function LoadingScreen({ mode, setMode }) {
-  console.log(setMode);
+  console.log(mode);
 
   return <Html>{!mode && <button onClick={(e) => setMode("start")}>Start</button>}</Html>;
 }

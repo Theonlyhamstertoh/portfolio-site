@@ -14,9 +14,7 @@ const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 
 export function MorphingBall({ mode }) {
   const noiseBall = useRef();
-  const [mobile, setMobile, audioData] = useStore((state) => [
-    state.mobile,
-    state.setMobile,
+  const [audioData] = useStore((state) => [
     state.audioData,
   ]);
 
@@ -25,6 +23,9 @@ export function MorphingBall({ mode }) {
 
 
   // const { gain, context, update } = mode === "start" && audioData();
+
+  console.log(mode === "start" && audioData())
+
 
   // useEffect(() => {
   //   console.log(mode);
@@ -36,10 +37,6 @@ export function MorphingBall({ mode }) {
   //   }
   // }, [gain, context, mode]);
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", setMobile);
-  //   return () => window.addEventListener("resize", setMobile);
-  // }, []);
 
   // useFrame(({ clock }) => {
   //   const t = clock.getElapsedTime();
