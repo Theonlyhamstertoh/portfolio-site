@@ -21,7 +21,7 @@ function App() {
 }
 
 function Scene() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); 
   const main_Light = useRef();
   const [play, setPlay] = useState(false);
 

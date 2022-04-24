@@ -1,23 +1,18 @@
 import { useSpring, a, config } from "@react-spring/three";
 import {
-  GradientTexture,
-  Html,
-  Icosahedron,
   MeshDistortMaterial,
-  MeshWobbleMaterial,
-  shaderMaterial,
 } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import randomColor from "randomcolor";
-import { TubeBufferGeometry } from "three";
-import { TorusKnotBufferGeometry } from "three";
 import { suspend } from "suspend-react";
+import { createAudio } from "./createAudio";
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 
 export function MorphingBall({ url, ...props }) {
   // 3D mesh points
+  const distortMaterial = useRef();
   const noiseBall = useRef();
   const noisePoints = useRef();
   const [isMobile, setMobile] = useState({ on: false, divideBy: 1 });
@@ -28,9 +23,9 @@ export function MorphingBall({ url, ...props }) {
     // wireframe: hovered ? true : false,
     scale: hovered ? 1.15 / isMobile.divideBy : 1 / isMobile.divideBy,
     distort: hovered ? 0 : 0,
-    speed: hovered ? 8 : 8,
+    speed: 12,
     wireframe: hovered ? false : true,
-    config: { mass: 3, tension: 300, friction: 10 },
+    config: { mass: 3, tension: 200, friction: 10 },
   });
 
   const { lightColor } = useSpring({
@@ -39,8 +34,8 @@ export function MorphingBall({ url, ...props }) {
   });
 
   const { gain, context, update } = suspend(
-    () => createAudio("/audio/aladdin.mp3"),
-    ["/audio/aladdin.mp3"]
+    () => createAudio("/audio/Tchaikovsky - Waltz of the Flowers.m4a"),
+    ["/audio/Tchaikovsky - Waltz of the Flowers.m4a"]
   );
   useEffect(() => {
     // Connect the gain node, which plays the audio
@@ -73,7 +68,7 @@ export function MorphingBall({ url, ...props }) {
     // noisePoints.current.rotation.z = noiseBall.current.rotation.z;
 
     let avg = update();
-    noiseBall.current.material.distort = avg / 175;
+    noiseBall.current.material.distort = Math.min(avg / 80, 0.85);
   });
 
   return (
@@ -92,6 +87,7 @@ export function MorphingBall({ url, ...props }) {
         onPointerOut={(e) => setHovered(!hovered)}>
         <icosahedronBufferGeometry args={[4, 30]} />
         <Animated_MeshDistortMaterial
+          ref={distortMaterial}
           wireframe={wireframe}
           speed={speed}
           color={lightColor}
@@ -102,34 +98,4 @@ export function MorphingBall({ url, ...props }) {
   );
 }
 
-async function createAudio(url) {
-  const res = await fetch(url);
-  const buffer = await res.arrayBuffer();
-  const context = new (window.AudioContext || window.webkitAudioContext)();
-  const source = context.createBufferSource();
-  source.buffer = await new Promise((res) => context.decodeAudioData(buffer, res));
-  source.loop = true;
-  source.start(0);
 
-  // Create gain node and an analyser
-  const gain = context.createGain();
-  const analyser = context.createAnalyser();
-  analyser.fftSize = 128;
-  source.connect(analyser);
-  analyser.connect(gain);
-
-  // The data array receive the audio frequencies
-  const data = new Uint8Array(analyser.frequencyBinCount);
-  return {
-    context,
-    source,
-    gain,
-    data,
-    // This function gets called every frame per audio source
-    update: () => {
-      analyser.getByteFrequencyData(data);
-      // Calculate a frequency average
-      return (data.avg = data.reduce((prev, cur) => prev + cur / data.length, 0));
-    },
-  };
-}
