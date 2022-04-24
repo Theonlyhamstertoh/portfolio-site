@@ -5,9 +5,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import randomColor from "randomcolor";
 import { suspend } from "suspend-react";
-import { createAudio } from "../js/createAudio";
-import useStore, { useCustomSpring } from "./useStore";
-
+import createAudio from "../js/createAudio";
+import useStore from "./useStore";
+import { useCustomSpring } from "../hooks/useCustomSpring";
 
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);

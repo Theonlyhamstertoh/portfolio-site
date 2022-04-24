@@ -14,16 +14,18 @@ function App() {
 function Scene() {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
   const virtualCamera = useRef();
+
+  
+  
   return (
     <>
       <LoadingScreen mode={mode} setMode={setMode} />
       <OrbitControls
-        maxDistance={17.5}
-        minDistance={12.5}
+        maxDistance={20}
+        minDistance={13}
         camera={virtualCamera.current}
         enablePan={false}
         autoRotate
-        enable
       />
       <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 15, 0]}>
         <pointLight castShadow intensity={1} />
