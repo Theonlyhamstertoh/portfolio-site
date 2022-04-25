@@ -1,9 +1,10 @@
-import { useSpring, a, config } from "@react-spring/three";
-import { MeshDistortMaterial } from "@react-three/drei";
+import { a } from "@react-spring/three";
+import { MeshDistortMaterial, Html } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useCustomSpring from "../hooks/useCustomSpring";
 import useAudio from "../hooks/useAudio";
+
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 const SPEED = 3;
@@ -45,6 +46,9 @@ export function MorphingBall() {
           color={color}
           metalness={0.3}
         ></Animated_MeshDistortMaterial>
+        <Html transform sprite>
+          <h1>WEIBO ZHANG</h1>
+        </Html>
       </a.mesh>
     </group>
   );

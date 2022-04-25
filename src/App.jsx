@@ -14,11 +14,9 @@ function App() {
 function Scene() {
   const virtualCamera = useRef();
 
-  
-  
   return (
     <>
-      <LoadingScreen  />
+      <LoadingScreen />
       <OrbitControls
         maxDistance={20}
         minDistance={13}
@@ -26,13 +24,18 @@ function Scene() {
         enablePan={false}
         autoRotate
       />
-      <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 15, 0]}>
+      <PerspectiveCamera
+        makeDefault
+        ref={virtualCamera}
+        name="Camera"
+        position={[0, 15, 0]}
+      >
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <color attach="background" args={[0x000000]} />
       <Suspense fallback={null}>
-        <MorphingBall/>
+        <MorphingBall />
       </Suspense>
     </>
   );
@@ -41,7 +44,10 @@ function Scene() {
 function LoadingScreen() {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
 
-
-  return <Html>{!mode && <button onClick={(e) => setMode("start")}>Start</button>}</Html>;
+  return (
+    <Html fullscreen>
+      {!mode && <button onClick={(e) => setMode("start")}>Start</button>}
+    </Html>
+  );
 }
 export default App;
