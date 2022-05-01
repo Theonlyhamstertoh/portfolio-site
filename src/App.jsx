@@ -37,6 +37,7 @@ function Scene() {
       <Suspense fallback={null}>
         <MorphingBall />
       </Suspense>
+      <gridHelper />
     </>
   );
 }

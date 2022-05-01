@@ -23,7 +23,7 @@ export function MorphingBall() {
     noiseBall.current.rotation.z = t / 10;
     noiseBall.current.position.y = Math.sin(t * 3) / 10;
 
-    // distort the ball
+    // distort the ball and animate frame
     if (update) {
       const avg = update();
       noiseBallMaterial.distort = Math.min(avg / 160, 0.85);
