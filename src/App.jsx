@@ -5,9 +5,14 @@ import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
 function App() {
   return (
-    <Canvas>
-      <Scene />
-    </Canvas>
+    <>
+      <Canvas>
+        <Scene />
+      </Canvas>
+      <section>ABOUT ME</section>
+      <section>PROJECTS</section>
+      <section>CONTACT ME</section>
+    </>
   );
 }
 
@@ -22,13 +27,14 @@ function Scene() {
         minDistance={13}
         camera={virtualCamera.current}
         enablePan={false}
-        autoRotate
+        // autoRotate
+        enableZoom={false}
       />
       <PerspectiveCamera
         makeDefault
         ref={virtualCamera}
         name="Camera"
-        position={[0, 15, 0]}
+        position={[0, 0, 15]}
       >
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
@@ -37,7 +43,6 @@ function Scene() {
       <Suspense fallback={null}>
         <MorphingBall />
       </Suspense>
-      <gridHelper />
     </>
   );
 }

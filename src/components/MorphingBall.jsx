@@ -1,13 +1,12 @@
 import { a } from "@react-spring/three";
 import { MeshDistortMaterial, Html } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import useCustomSpring from "../hooks/useCustomSpring";
 import useAudio from "../hooks/useAudio";
 
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
-const SPEED = 3;
 export function MorphingBall() {
   const noiseBall = useRef();
   // hover state for handling
@@ -46,10 +45,55 @@ export function MorphingBall() {
           color={color}
           metalness={0.3}
         ></Animated_MeshDistortMaterial>
-        <Html transform sprite>
-          <h1>WEIBO ZHANG</h1>
-        </Html>
       </a.mesh>
+      <BigWeiboName setHovered={setHovered} />
     </group>
   );
+}
+
+function BigWeiboName({}) {
+  const [hovered, setHovered] = useState(false);
+  const groupRef = useRef();
+
+  function getMousePosition(e) {
+    const xPosition = e.clientX / window.innerWidth - 0.5;
+    const yPosition = e.clientY / window.innerHeight - 0.5;
+    groupRef.current.rotation.y = (xPosition * Math.PI) / 4;
+    groupRef.current.rotation.x = (yPosition * Math.PI) / 4;
+  }
+
+  useEffect(() => {
+    // do a initial call
+    window.addEventListener("mousemove", getMousePosition);
+    return () => window.removeEventListener("mousemove", getMousePosition);
+  }, []);
+
+  useEffect(() => {
+    console.log(hovered);
+  });
+  return (
+    <group
+      ref={groupRef}
+      onPointerOver={(e) => setHovered(true)}
+      onPointerOut={(e) => setHovered(false)}
+    >
+      <Html transform position={[0, 0, 2]}>
+        <h1>WEIBO ZHANG</h1>
+      </Html>
+    </group>
+  );
+}
+function useMousePosition() {
+  const nMousePosition = useRef([0, 0]);
+  function getMousePosition(e) {
+    const xPosition = e.clientX / window.innerWidth - 0.5;
+    const yPosition = e.clientY / window.innerWidth - 0.5;
+    nMousePosition.current = [xPosition / 4, yPosition / 4];
+  }
+  useEffect(() => {
+    // do a initial call
+    window.addEventListener("mousemove", getMousePosition);
+    return () => window.removeEventListener("mousemove", getMousePosition);
+  }, []);
+  return nMousePosition;
 }

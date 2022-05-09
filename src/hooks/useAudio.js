@@ -20,7 +20,7 @@ export default function useAudio() {
 
 function intializeAudioData() {
   return suspend(
-    () => createAudio("/audio/Will Smith - Prince Ali.m4a"),
-    ["/audio/Will Smith - Prince Ali.m4a"]
+    () => createAudio("/audio/500miles.opus"),
+    ["/audio/500miles.opus"]
   );
 }
