@@ -46,13 +46,12 @@ export function MorphingBall() {
           metalness={0.3}
         ></Animated_MeshDistortMaterial>
       </a.mesh>
-      <BigWeiboName setHovered={setHovered} />
+      <BigWeiboName />
     </group>
   );
 }
 
 function BigWeiboName({}) {
-  const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
 
   function getMousePosition(e) {
@@ -68,16 +67,9 @@ function BigWeiboName({}) {
     return () => window.removeEventListener("mousemove", getMousePosition);
   }, []);
 
-  useEffect(() => {
-    console.log(hovered);
-  });
   return (
-    <group
-      ref={groupRef}
-      onPointerOver={(e) => setHovered(true)}
-      onPointerOut={(e) => setHovered(false)}
-    >
-      <Html transform position={[0, 0, 2]}>
+    <group ref={groupRef}>
+      <Html transform position={[0, 0, 2]} zIndexRange={[0, 0]}>
         <h1>WEIBO ZHANG</h1>
       </Html>
     </group>
