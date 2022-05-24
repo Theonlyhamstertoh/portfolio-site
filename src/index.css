@@ -3,6 +3,8 @@ body {
   font-family: "Khula", "Open Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  overflow-x: hidden;
 }
 
 code {
@@ -40,4 +42,5 @@ h1 {
 
 section {
   padding: 10px;
+  margin-bottom: 50px;
 }

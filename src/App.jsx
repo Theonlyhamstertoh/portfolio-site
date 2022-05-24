@@ -3,13 +3,14 @@ import { Suspense, useRef, useState, useEffect } from "react";
 import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
+import Section from "./components/Section";
 function App() {
   return (
     <>
       <Canvas>
         <Scene />
       </Canvas>
-      <section>ABOUT ME</section>
+      <Section>ABOUT ME</Section>
       <section>PROJECTS</section>
       <section>CONTACT ME</section>
     </>
@@ -39,7 +40,7 @@ function Scene() {
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
-      <color attach="background" args={[0x000000]} />
+      {/* <color attach="background" args={[0x1b1b1b]} /> */}
       <Suspense fallback={null}>
         <MorphingBall />
       </Suspense>
