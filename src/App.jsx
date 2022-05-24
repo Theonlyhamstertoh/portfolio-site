@@ -4,6 +4,7 @@ import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
 import Section from "./components/Section";
+import PointBall from "./components/PointBall";
 function App() {
   return (
     <>
