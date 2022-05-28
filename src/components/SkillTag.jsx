@@ -1,8 +1,20 @@
+import { useState } from "react";
+
 export default function SkillTag({ skillName }) {
+  const [image, setImage] = useState(true);
+
+  async function set(path) {}
   return (
-    <div>
-      <img src={`/icons/${skillName}.svg`} alt={skillName} />
+    <span className="skillTag">
+      {image && (
+        <img
+          className="skillIcon"
+          src={`/icons/${skillName}.svg`}
+          onError={() => setImage(false)}
+          alt={skillName}
+        />
+      )}
       <span>{skillName}</span>
-    </div>
+    </span>
   );
 }

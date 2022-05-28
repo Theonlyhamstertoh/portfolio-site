@@ -3,7 +3,7 @@ import { Suspense, useRef, useState, useEffect } from "react";
 import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
-import Section from "./components/Section";
+import ProjectSection from "./components/ProjectSection";
 import PointBall from "./components/PointBall";
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Canvas>
         <Scene />
       </Canvas>
-      <Section>ABOUT ME</Section>
+      <ProjectSection>ABOUT ME</ProjectSection>
       <section>PROJECTS</section>
       <section>CONTACT ME</section>
     </>

@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: "M PLUS 1", "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  overflow-x: hidden;
+  color: whitesmoke;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#three-background {
+  width: 100%;
+  height: 100%;
+  /* display: flex; */
+}
+
+.name {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex: center;
+}
+h1 {
+  color: white;
+  font-weight: 800;
+  font-size: 60px;
+  margin: 0px;
+  user-select: none;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 0;
+}
+section {
+  padding: 50px;
+  margin-bottom: 50px;
+
+  .projectSection {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  .projectInfo {
+    width: 30%;
+    margin-bottom: 20px;
+  }
+
+  .projectImage {
+    border-radius: 15px;
+  }
+
+  .skillTag {
+    /* width: fit-content; */
+    background-color: #444;
+    border-radius: 8px;
+    color: rgb(254, 255, 217);
+    font-family: monospace;
+    align-items: center;
+    padding: 3px 8px;
+    margin-right: 6px;
+  }
+
+  .skillIcon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .line {
+    width: 450px;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}

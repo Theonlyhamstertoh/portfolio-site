@@ -18,6 +18,7 @@
     "randomcolor": "^0.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "sass": "^1.52.1",
     "suspend-react": "^0.0.8",
     "three": "^0.139.2",
     "zustand": "^3.7.2"
