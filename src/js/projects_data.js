@@ -1,6 +1,6 @@
 const projects = [
   {
-    title: "Stacks",
+    title: "STACKS",
     photos: [
       "https://user-images.githubusercontent.com/75579372/169952017-4c000e87-d55e-47d6-8e66-781a7c1cbd05.png",
       "https://user-images.githubusercontent.com/75579372/169952244-3508a488-5337-46ad-93eb-2671c7be74b8.png",
@@ -47,14 +47,14 @@ const projects = [
       "A fully packed weather forecast that feature hour by hour weather reports in addition to any city and location by using OpenWeatherMap API with async/await and fetch",
     liveDemoUrl: "https://theonlyhamstertoh.github.io/weatherapp/",
   },
-  {
-    title: "",
-    photos: [],
-    tools: [],
-    githubUrl: "",
-    description: "",
-    liveDemoUrl: "",
-  },
+  // {
+  //   title: "",
+  //   photos: [],
+  //   tools: [],
+  //   githubUrl: "",
+  //   description: "",
+  //   liveDemoUrl: "",
+  // },
 ];
 
 export default projects;

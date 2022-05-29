@@ -8,6 +8,13 @@ body {
   color: whitesmoke;
 }
 
+a {
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+
 html,
 body,
 #root {
@@ -39,34 +46,68 @@ h1 {
 h2 {
   font-size: 30px;
   margin: 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 10px;
+  color: #fff7b1;
 }
 section {
   padding: 50px;
   margin-bottom: 50px;
-
   .projectSection {
     display: flex;
-    gap: 10px;
+    gap: 1vw;
+    margin: 50px 150px;
     flex-direction: row;
+    justify-content: center;
   }
   .projectInfo {
-    width: 30%;
+    min-width: 300px;
+    max-width: 350px;
     margin-bottom: 20px;
+    background-color: #06060679;
+    padding: 30px;
+    border-radius: 20px;
+    align-self: center;
+    height: fit-content;
   }
 
   .projectImage {
     border-radius: 15px;
+    max-height: 50%;
+    width: 300px;
+    object-fit: cover;
   }
 
+  .projectDescription {
+    color: #9d9a86;
+    text-align: justify;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  .skillTagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7px 7px;
+    margin-bottom: 15px;
+  }
   .skillTag {
     /* width: fit-content; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
     background-color: #444;
     border-radius: 8px;
-    color: rgb(254, 255, 217);
+    color: rgba(227, 228, 189, 0.95);
     font-family: monospace;
     align-items: center;
     padding: 3px 8px;
-    margin-right: 6px;
   }
 
   .skillIcon {
@@ -82,4 +123,36 @@ section {
 .flex {
   display: flex;
   gap: 10px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.buttonContainer {
+  font-family: monospace;
+  font-size: 15px;
+  border-radius: 7px;
+  font-weight: 700;
+
+  .primaryButton {
+    @extend .buttonContainer;
+    width: 150px;
+    background: #c2ba80;
+    padding: 8px 10px;
+  }
+
+  .secondaryButton {
+    @extend .buttonContainer;
+    border: 2px solid #8f8d7f;
+    width: 150px;
+    background-color: transparent;
+    border-radius: 7px;
+    color: #8f8d7f;
+    padding: 6px 10px;
+  }
 }

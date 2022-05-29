@@ -8,14 +8,19 @@ export default function ProjectSection({ children }) {
         <h1>FEATURED PROJECTS</h1>
         <img className="line" src="/icons/long line.svg" />
       </div>
+      {/* Map through every project and display them */}
       {projects.map((project, i) => (
         <div className="projectSection">
+          {/* Project images */}
           <img className="projectImage" src={project.photos[0]} />
           <img className="projectImage" src={project.photos[1]} />
+          <img className="projectImage" src={project.photos[2]} />
 
+          {/* Container for project information */}
           <div className="projectInfo" key={`${project.title}-${i}`}>
             <h2>{project.title}</h2>
-            <div>
+            {/* Display skills/tools used in tags */}
+            <div className="skillTagContainer">
               {project.tools.map((tool, i) => (
                 <SkillTag
                   skillName={tool}
@@ -23,10 +28,29 @@ export default function ProjectSection({ children }) {
                 />
               ))}
             </div>
-            <div>{project.description}</div>
+
+            {/* Project description */}
+            <div className="projectDescription">{project.description}</div>
+            <ProjectCodeAndLiveButtons
+              githubUrl={project.githubUrl}
+              liveDemoUrl={project.liveDemoUrl}
+            />
           </div>
         </div>
       ))}
     </section>
+  );
+}
+
+function ProjectCodeAndLiveButtons({ githubUrl, liveDemoUrl }) {
+  return (
+    <div className="flex-center buttonContainer ">
+      <a href={githubUrl} target="_blank" className="secondaryButton">
+        REVIEW CODE
+      </a>
+      <a href={liveDemoUrl} target="_blank" className="primaryButton">
+        SEE IT LIVE
+      </a>
+    </div>
   );
 }
