@@ -17,7 +17,10 @@ export default function ProjectSection({ children }) {
           <img className="projectImage" src={project.photos[2]} />
 
           {/* Container for project information */}
-          <div className="projectInfo" key={`${project.title}-${i}`}>
+          <div
+            className={`projectInfo ${i % 2 !== 0 ? "switchSide" : ""}`}
+            key={`${project.title}-${i}`}
+          >
             <h2>{project.title}</h2>
             {/* Display skills/tools used in tags */}
             <div className="skillTagContainer">

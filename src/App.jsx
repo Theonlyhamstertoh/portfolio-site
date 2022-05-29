@@ -11,8 +11,8 @@ function App() {
       <Canvas>
         <Scene />
       </Canvas>
-      <ProjectSection>ABOUT ME</ProjectSection>
-      <section>PROJECTS</section>
+      <ProjectSection />
+      {/* <section>PROJECTS</section> */}
       <section>CONTACT ME</section>
     </>
   );

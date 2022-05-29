@@ -45,12 +45,11 @@ h1 {
 
 h2 {
   font-size: 30px;
-  margin: 0;
   text-align: center;
+  margin: 0;
   font-style: normal;
   font-weight: 800;
   letter-spacing: 2px;
-  margin: 10px;
   color: #fff7b1;
 }
 section {
@@ -68,12 +67,15 @@ section {
     max-width: 350px;
     margin-bottom: 20px;
     background-color: #06060679;
-    padding: 30px;
+    padding: 50px 30px;
     border-radius: 20px;
     align-self: center;
     height: fit-content;
   }
 
+  .switchSide {
+    order: -1;
+  }
   .projectImage {
     border-radius: 15px;
     max-height: 50%;
@@ -94,7 +96,7 @@ section {
     align-items: center;
     justify-content: center;
     gap: 7px 7px;
-    margin-bottom: 15px;
+    margin: 15px 0;
   }
   .skillTag {
     /* width: fit-content; */
@@ -138,12 +140,16 @@ section {
   font-size: 15px;
   border-radius: 7px;
   font-weight: 700;
+  transition: all linear 200ms;
 
   .primaryButton {
     @extend .buttonContainer;
     width: 150px;
     background: #c2ba80;
     padding: 8px 10px;
+    &:hover {
+      width: 240px;
+    }
   }
 
   .secondaryButton {
@@ -154,5 +160,8 @@ section {
     border-radius: 7px;
     color: #8f8d7f;
     padding: 6px 10px;
+    &:hover {
+      width: 240px;
+    }
   }
 }
