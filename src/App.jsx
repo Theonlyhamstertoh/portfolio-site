@@ -1,10 +1,16 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
-import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+  Html,
+  OrbitControls,
+  PerspectiveCamera,
+  Stars,
+} from "@react-three/drei";
 import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
 import ProjectSection from "./components/ProjectSection";
 import PointBall from "./components/PointBall";
+import GlitteringStars from "./components/PointBall";
 function App() {
   return (
     <>
@@ -24,14 +30,14 @@ function Scene() {
   return (
     <>
       <LoadingScreen />
-      <OrbitControls
+      {/* <OrbitControls
         maxDistance={20}
         minDistance={13}
         camera={virtualCamera.current}
         enablePan={false}
         // autoRotate
         enableZoom={false}
-      />
+      /> */}
       <PerspectiveCamera
         makeDefault
         ref={virtualCamera}
@@ -44,6 +50,8 @@ function Scene() {
       {/* <color attach="background" args={[0x1b1b1b]} /> */}
       <Suspense fallback={null}>
         <MorphingBall />
+        <GlitteringStars />
+        {/* <PointBall /> */}
       </Suspense>
     </>
   );

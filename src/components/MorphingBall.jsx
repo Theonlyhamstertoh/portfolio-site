@@ -1,5 +1,5 @@
 import { a } from "@react-spring/three";
-import { MeshDistortMaterial, Html } from "@react-three/drei";
+import { MeshDistortMaterial, Html, Stars } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useRef, useState, useEffect } from "react";
 import useCustomSpring from "../hooks/useCustomSpring";
@@ -44,8 +44,9 @@ export function MorphingBall() {
           speed={12}
           color={color}
           metalness={0.3}
-        ></Animated_MeshDistortMaterial>
+        />
       </a.mesh>
+
       <BigWeiboName />
     </group>
   );

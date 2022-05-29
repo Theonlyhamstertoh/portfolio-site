@@ -1,3 +1,5 @@
+@use "./projectSection";
+
 body {
   margin: 0;
   font-family: "M PLUS 1", "Open Sans", "Helvetica Neue", sans-serif;
@@ -55,67 +57,6 @@ h2 {
 section {
   padding: 50px;
   margin-bottom: 50px;
-  .projectSection {
-    display: flex;
-    gap: 1vw;
-    margin: 50px 150px;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .projectInfo {
-    min-width: 300px;
-    max-width: 350px;
-    margin-bottom: 20px;
-    background-color: #06060679;
-    padding: 50px 30px;
-    border-radius: 20px;
-    align-self: center;
-    height: fit-content;
-  }
-
-  .switchSide {
-    order: -1;
-  }
-  .projectImage {
-    border-radius: 15px;
-    max-height: 50%;
-    width: 300px;
-    object-fit: cover;
-  }
-
-  .projectDescription {
-    color: #9d9a86;
-    text-align: justify;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-  }
-  .skillTagContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 7px 7px;
-    margin: 15px 0;
-  }
-  .skillTag {
-    /* width: fit-content; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    background-color: #444;
-    border-radius: 8px;
-    color: rgba(227, 228, 189, 0.95);
-    font-family: monospace;
-    align-items: center;
-    padding: 3px 8px;
-  }
-
-  .skillIcon {
-    width: 15px;
-    height: 15px;
-  }
 
   .line {
     width: 450px;

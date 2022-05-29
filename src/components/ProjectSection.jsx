@@ -10,17 +10,14 @@ export default function ProjectSection({ children }) {
       </div>
       {/* Map through every project and display them */}
       {projects.map((project, i) => (
-        <div className="projectSection">
+        <div key={`${project.title}-${i}`} className="projectSection">
           {/* Project images */}
           <img className="projectImage" src={project.photos[0]} />
           <img className="projectImage" src={project.photos[1]} />
           <img className="projectImage" src={project.photos[2]} />
 
           {/* Container for project information */}
-          <div
-            className={`projectInfo ${i % 2 !== 0 ? "switchSide" : ""}`}
-            key={`${project.title}-${i}`}
-          >
+          <div className={`projectInfo ${i % 2 !== 0 ? "switchSide" : ""}`}>
             <h2>{project.title}</h2>
             {/* Display skills/tools used in tags */}
             <div className="skillTagContainer">
