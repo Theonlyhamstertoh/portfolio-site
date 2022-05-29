@@ -9,6 +9,7 @@ import useAudio from "../hooks/useAudio";
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 export function MorphingBall() {
   const noiseBall = useRef();
+  const volumeFrequency = useRef(0);
   // hover state for handling
   const { hovered, setHovered, spring, color } = useCustomSpring();
 
@@ -26,6 +27,7 @@ export function MorphingBall() {
     if (update) {
       const avg = update();
       noiseBallMaterial.distort = Math.min(avg / 160, 0.85);
+      volumeFrequency.current = avg;
     }
   });
 

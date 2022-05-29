@@ -1,0 +1,30 @@
+.buttonContainer {
+  font-family: monospace;
+  font-size: 15px;
+  border-radius: 7px;
+  font-weight: 700;
+  transition: all linear 200ms;
+
+  .primaryButton {
+    @extend .buttonContainer;
+    width: 150px;
+    background: #e7dfa0;
+    padding: 8px 10px;
+    &:hover {
+      width: 240px;
+    }
+  }
+
+  .secondaryButton {
+    @extend .buttonContainer;
+    border: 2px solid #8f8d7f;
+    width: 150px;
+    background-color: transparent;
+    border-radius: 7px;
+    color: #e7dfa0;
+    padding: 6px 10px;
+    &:hover {
+      width: 240px;
+    }
+  }
+}

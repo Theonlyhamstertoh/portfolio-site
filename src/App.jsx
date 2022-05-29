@@ -9,8 +9,7 @@ import {
 import { MorphingBall } from "./components/MorphingBall";
 import useStore from "./components/useStore";
 import ProjectSection from "./components/ProjectSection";
-import PointBall from "./components/PointBall";
-import GlitteringStars from "./components/PointBall";
+import GlitteringStars from "./components/GlitteringStars";
 function App() {
   return (
     <>
@@ -51,7 +50,6 @@ function Scene() {
       <Suspense fallback={null}>
         <MorphingBall />
         <GlitteringStars />
-        {/* <PointBall /> */}
       </Suspense>
     </>
   );

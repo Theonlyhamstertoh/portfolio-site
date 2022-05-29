@@ -4,6 +4,7 @@
   margin: 50px 150px;
   flex-direction: row;
   justify-content: center;
+  display: relative;
 }
 .projectInfo {
   min-width: 300px;
@@ -49,7 +50,7 @@
   gap: 3px;
   background-color: #444;
   border-radius: 8px;
-  color: rgba(227, 228, 189, 0.95);
+  color: #cbc9b6;
   font-family: monospace;
   align-items: center;
   padding: 3px 8px;
