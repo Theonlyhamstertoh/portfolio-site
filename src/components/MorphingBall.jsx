@@ -4,7 +4,7 @@ import { extend, useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState, useEffect } from "react";
 import useCustomSpring from "../hooks/useCustomSpring";
 import useAudio from "../hooks/useAudio";
-
+import BigWeiboName from "./BigWeiboName";
 // convert the component into a animated component
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 export function MorphingBall() {
@@ -12,15 +12,16 @@ export function MorphingBall() {
   // hover state for handling
   const { setHovered, spring, color } = useCustomSpring();
 
-  const { gain, update = null } = useAudio();
+  const { update = null } = useAudio();
 
+  // animate the ball
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     const noiseBallMaterial = noiseBall.current.material;
 
     noiseBall.current.rotation.y = t / 10;
-    noiseBall.current.rotation.z = t / 10;
-    noiseBall.current.position.y = Math.sin(t * 3) / 10;
+    noiseBall.current.rotation.z = t / 2;
+    noiseBall.current.position.y = Math.sin(t * 3) / 3;
 
     // distort the ball and animate frame
     if (update) {
@@ -52,31 +53,6 @@ export function MorphingBall() {
   );
 }
 
-function BigWeiboName({}) {
-  const groupRef = useRef();
-  const { mouse } = useThree();
-  console.log(mouse);
-  function getMousePosition(e) {
-    const xPosition = e.clientX / window.innerWidth - 0.5;
-    const yPosition = e.clientY / window.innerHeight - 0.5;
-    groupRef.current.rotation.y = (xPosition * Math.PI) / 4;
-    groupRef.current.rotation.x = (yPosition * Math.PI) / 4;
-  }
-
-  useEffect(() => {
-    // do a initial call
-    window.addEventListener("mousemove", getMousePosition);
-    return () => window.removeEventListener("mousemove", getMousePosition);
-  }, []);
-
-  return (
-    <group ref={groupRef}>
-      <Html transform position={[0, 0, 2]} zIndexRange={[0, 0]}>
-        <h1>WEIBO ZHANG</h1>
-      </Html>
-    </group>
-  );
-}
 // function useMousePosition() {
 //   const nMousePosition = useRef([0, 0]);
 //   function getMousePosition(e) {
