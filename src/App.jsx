@@ -17,6 +17,18 @@ import useStore from "./components/useStore";
 import ProjectSection from "./components/ProjectSection";
 import GlitteringStars from "./components/GlitteringStars";
 function App() {
+  const [mobile, mobileResizeHelper] = useStore((state) => [
+    state.mobile,
+    state.mobileResizeHelper,
+  ]);
+
+  useEffect(() => {
+    // do a initial call
+    mobileResizeHelper();
+    window.addEventListener("resize", mobileResizeHelper);
+    return () => window.removeEventListener("resize", mobileResizeHelper);
+  }, [mobile]);
+
   return (
     <>
       <img src="/background.png" className="background" />

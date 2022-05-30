@@ -1,17 +1,11 @@
 import randomColor from "randomcolor";
 import { useSpring, config } from "@react-spring/three";
 import { useState, useEffect } from "react";
+import useStore from "../components/useStore";
 
 export default function useCustomSpring() {
   const [hovered, setHovered] = useState(false);
-  const [mobile, setMobile] = useState(false);
-
-  function mobileResizeHelper() {
-    const isMobile = window.innerWidth < 550;
-    // if both are exactly the same already, then do nothing
-    if (isMobile === mobile) return;
-    return isMobile ? setMobile(true) : setMobile(false);
-  }
+  const [mobile] = useStore((state) => [state.mobile]);
 
   function scaleHelper() {
     if (mobile) {
@@ -24,12 +18,6 @@ export default function useCustomSpring() {
   useEffect(() => {
     document.body.style.cursor = hovered ? "pointer" : "auto";
   }, [hovered]);
-  useEffect(() => {
-    // do a initial call
-    mobileResizeHelper();
-    window.addEventListener("resize", mobileResizeHelper);
-    return () => window.removeEventListener("resize", mobileResizeHelper);
-  }, [mobile]);
 
   const spring = useSpring({
     scale: scaleHelper(),
@@ -44,3 +32,10 @@ export default function useCustomSpring() {
 
   return { hovered, setHovered, spring, color };
 }
+
+// function mobileResizeHelper() {
+//   const isMobile = window.innerWidth < 550;
+//   // if both are exactly the same already, then do nothing
+//   if (isMobile === mobile) return;
+//   return isMobile ? setMobile(true) : setMobile(false);
+// }

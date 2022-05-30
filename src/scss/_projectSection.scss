@@ -6,20 +6,42 @@
 .projectSection {
   display: flex;
   gap: 1vw;
-  margin: 50px 150px;
+  margin: 50px 10px;
   flex-direction: row;
   justify-content: center;
-  display: relative;
+  align-items: center;
+  transition: all 1000ms linear 0ms;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 400px) {
+    margin: 0;
+    margin-top: 30px;
+    flex-direction: column;
+  }
 }
 .projectInfo {
   min-width: 300px;
   max-width: 350px;
+  margin: 0;
   margin-bottom: 20px;
   background-color: #06060679;
   padding: 50px 30px;
   border-radius: 20px;
-  align-self: center;
   height: fit-content;
+  align-self: center;
+  transition: all 1000ms linear 0ms;
+
+  @media screen and (max-width: 1300px) {
+    transform: scale(0.81);
+  }
+  @media screen and (max-width: 400px) {
+    border-radius: 10px;
+    margin-top: -6vw;
+    margin-bottom: 0px;
+  }
 }
 
 .switchSide {
@@ -27,14 +49,32 @@
 }
 .projectImage {
   object-fit: cover;
-  border: 10px solid rgba(84, 84, 84, 0.26);
-  box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.156);
+  border: 5px solid rgba(84, 84, 84, 0.26);
   border-radius: 53px;
-  max-width: 60vw;
+  width: 60vw;
+  height: 37vw;
   filter: grayscale(1);
   transition: all 100ms linear 0ms;
   &:hover {
     filter: grayscale(0);
+  }
+
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+
+  @media screen and (max-width: 1000px) {
+    height: 60vh;
+    width: 90vw;
+  }
+  @media screen and (max-width: 400px) {
+    border-width: 3px;
+    align-items: center;
+    justify-self: center;
+    height: 100vw;
+    border-radius: 10px;
+    width: 82vw;
   }
 }
 

@@ -5,6 +5,7 @@ import projects from "../js/projects_data";
 import SkillTag from "./SkillTag";
 import * as THREE from "three";
 import { Image } from "@react-three/drei";
+import useStore from "./useStore";
 export default function ProjectSection({ children }) {
   return (
     <section className="scrollContainer">
@@ -14,12 +15,17 @@ export default function ProjectSection({ children }) {
       </div>
       {/* Map through every project and display them */}
       {projects.map((project, i) => (
-        <div key={`${project.title}-${i}`} className="projectSection">
-          {/* Project images */}
-          <ProjectImage project={project} />
-          {/* Container for project information */}
-          <ProjectInfoContainer project={project} i={i} />
-        </div>
+        <>
+          <div key={`${project.title}-${i}`} className="projectSection">
+            {/* Project images */}
+            <ProjectImage project={project} />
+            {/* Container for project information */}
+            <ProjectInfoContainer project={project} i={i} />
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <img className="line" src="/icons/long line.svg" />
+          </div>
+        </>
       ))}
     </section>
   );
@@ -37,8 +43,12 @@ function ProjectImage({ project }) {
 }
 
 function ProjectInfoContainer({ project, i }) {
+  const mobile = useStore((state) => state.mobile);
+
   return (
-    <div className={`projectInfo ${i % 2 !== 0 ? "switchSide" : ""}`}>
+    <div
+      className={`projectInfo ${!mobile && i % 2 !== 0 ? "switchSide" : ""}`}
+    >
       <h2>{project.title}</h2>
       {/* Display skills/tools used in tags */}
       <div className="skillTagContainer">
