@@ -2,13 +2,14 @@ import randomColor from "randomcolor";
 import { useSpring, config } from "@react-spring/three";
 import { useState, useEffect } from "react";
 import useStore from "../components/useStore";
+import { useThree } from "@react-three/fiber";
 
 export default function useCustomSpring() {
   const [hovered, setHovered] = useState(false);
-  const [mobile] = useStore((state) => [state.mobile]);
+  const { size } = useThree();
 
   function scaleHelper() {
-    if (mobile) {
+    if (size.width < 550) {
       return hovered ? 0.65 : 0.5;
     } else {
       return hovered ? 1.1 : 1;

@@ -22,13 +22,6 @@ function App() {
     state.mobileResizeHelper,
   ]);
 
-  useEffect(() => {
-    // do a initial call
-    mobileResizeHelper();
-    window.addEventListener("resize", mobileResizeHelper);
-    return () => window.removeEventListener("resize", mobileResizeHelper);
-  }, [mobile]);
-
   return (
     <>
       <img src="/background.png" className="background" />
