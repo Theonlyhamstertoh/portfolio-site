@@ -9,9 +9,8 @@ import useAudio from "../hooks/useAudio";
 const Animated_MeshDistortMaterial = a(MeshDistortMaterial);
 export function MorphingBall() {
   const noiseBall = useRef();
-  const volumeFrequency = useRef(0);
   // hover state for handling
-  const { hovered, setHovered, spring, color } = useCustomSpring();
+  const { setHovered, spring, color } = useCustomSpring();
 
   const { gain, update = null } = useAudio();
 
@@ -27,7 +26,6 @@ export function MorphingBall() {
     if (update) {
       const avg = update();
       noiseBallMaterial.distort = Math.min(avg / 160, 0.85);
-      volumeFrequency.current = avg;
     }
   });
 
@@ -78,17 +76,17 @@ function BigWeiboName({}) {
     </group>
   );
 }
-function useMousePosition() {
-  const nMousePosition = useRef([0, 0]);
-  function getMousePosition(e) {
-    const xPosition = e.clientX / window.innerWidth - 0.5;
-    const yPosition = e.clientY / window.innerWidth - 0.5;
-    nMousePosition.current = [xPosition / 4, yPosition / 4];
-  }
-  useEffect(() => {
-    // do a initial call
-    window.addEventListener("mousemove", getMousePosition);
-    return () => window.removeEventListener("mousemove", getMousePosition);
-  }, []);
-  return nMousePosition;
-}
+// function useMousePosition() {
+//   const nMousePosition = useRef([0, 0]);
+//   function getMousePosition(e) {
+//     const xPosition = e.clientX / window.innerWidth - 0.5;
+//     const yPosition = e.clientY / window.innerWidth - 0.5;
+//     nMousePosition.current = [xPosition / 4, yPosition / 4];
+//   }
+//   useEffect(() => {
+//     // do a initial call
+//     window.addEventListener("mousemove", getMousePosition);
+//     return () => window.removeEventListener("mousemove", getMousePosition);
+//   }, []);
+//   return nMousePosition;
+// }

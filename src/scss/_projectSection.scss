@@ -1,3 +1,8 @@
+.scrollContainer {
+  margin-top: 150vh;
+  // padding: 40px;
+  width: auto;
+}
 .projectSection {
   display: flex;
   gap: 1vw;
@@ -21,10 +26,11 @@
   order: -1;
 }
 .projectImage {
-  border-radius: 15px;
-  max-height: 50%;
-  width: 300px;
   object-fit: cover;
+  border: 10px solid rgba(84, 84, 84, 0.26);
+  box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.156);
+  border-radius: 53px;
+  max-width: 60vw;
 }
 
 .projectDescription {

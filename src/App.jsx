@@ -4,6 +4,9 @@ import {
   Html,
   OrbitControls,
   PerspectiveCamera,
+  Preload,
+  Scroll,
+  ScrollControls,
   Stars,
 } from "@react-three/drei";
 import { MorphingBall } from "./components/MorphingBall";
@@ -16,9 +19,6 @@ function App() {
       <Canvas>
         <Scene />
       </Canvas>
-      <ProjectSection />
-      {/* <section>PROJECTS</section> */}
-      <section>CONTACT ME</section>
     </>
   );
 }
@@ -28,7 +28,7 @@ function Scene() {
 
   return (
     <>
-      <LoadingScreen />
+      {/* <LoadingScreen /> */}
       {/* <OrbitControls
         maxDistance={20}
         minDistance={13}
@@ -48,8 +48,16 @@ function Scene() {
       <ambientLight intensity={0.15} />
       {/* <color attach="background" args={[0x1b1b1b]} /> */}
       <Suspense fallback={null}>
-        <MorphingBall />
-        <GlitteringStars />
+        <ScrollControls damping={2} pages={10}>
+          <Preload />
+          <Scroll>
+            <MorphingBall />
+            <GlitteringStars />
+          </Scroll>
+          <Scroll html>
+            <ProjectSection />
+          </Scroll>
+        </ScrollControls>
       </Suspense>
     </>
   );
