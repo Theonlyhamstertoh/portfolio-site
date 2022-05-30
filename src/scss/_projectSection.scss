@@ -1,7 +1,7 @@
 .scrollContainer {
   margin-top: 150vh;
-  // padding: 40px;
-  width: auto;
+  padding: 40px;
+  width: calc(100vw - 80px);
 }
 .projectSection {
   display: flex;
@@ -31,6 +31,11 @@
   box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.156);
   border-radius: 53px;
   max-width: 60vw;
+  filter: grayscale(1);
+  transition: all 100ms linear 0ms;
+  &:hover {
+    filter: grayscale(0);
+  }
 }
 
 .projectDescription {

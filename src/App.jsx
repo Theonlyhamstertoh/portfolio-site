@@ -1,7 +1,10 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
 import {
   Html,
+  Image,
+  MeshDistortMaterial,
+  MeshWobbleMaterial,
   OrbitControls,
   PerspectiveCamera,
   Preload,
@@ -16,6 +19,7 @@ import GlitteringStars from "./components/GlitteringStars";
 function App() {
   return (
     <>
+      <img src="/background.png" className="background" />
       <Canvas>
         <Scene />
       </Canvas>
