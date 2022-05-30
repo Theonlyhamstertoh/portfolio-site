@@ -2,26 +2,26 @@ import { Canvas, useLoader } from "@react-three/fiber";
 import { Suspense, useRef, useState, useEffect } from "react";
 import {
   Html,
-  Image,
-  MeshDistortMaterial,
-  MeshWobbleMaterial,
-  OrbitControls,
   PerspectiveCamera,
   Preload,
   Scroll,
   ScrollControls,
-  Stars,
 } from "@react-three/drei";
+useStore;
 import { MorphingBall } from "./components/MorphingBall";
-import useStore from "./components/useStore";
 import ProjectSection from "./components/ProjectSection";
 import GlitteringStars from "./components/GlitteringStars";
+import useStore from "./components/useStore";
+import {
+  Bloom,
+  DepthOfField,
+  EffectComposer,
+  Noise,
+  Outline,
+  Select,
+  Vignette,
+} from "@react-three/postprocessing";
 function App() {
-  const [mobile, mobileResizeHelper] = useStore((state) => [
-    state.mobile,
-    state.mobileResizeHelper,
-  ]);
-
   return (
     <>
       <img src="/background.png" className="background" />
@@ -37,15 +37,6 @@ function Scene() {
 
   return (
     <>
-      {/* <LoadingScreen /> */}
-      {/* <OrbitControls
-        maxDistance={20}
-        minDistance={13}
-        camera={virtualCamera.current}
-        enablePan={false}
-        // autoRotate
-        enableZoom={false}
-      /> */}
       <PerspectiveCamera
         makeDefault
         ref={virtualCamera}
@@ -55,19 +46,27 @@ function Scene() {
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
-      {/* <color attach="background" args={[0x1b1b1b]} /> */}
       <Suspense fallback={null}>
         <ScrollControls damping={4} pages={10}>
           <Preload />
           <Scroll>
             <MorphingBall />
+          </Scroll>
+          <Scroll>
             <GlitteringStars />
           </Scroll>
           <Scroll html>
+            <LoadingScreen />
             <ProjectSection />
           </Scroll>
         </ScrollControls>
       </Suspense>
+
+      <EffectComposer multisampling={0} disableNormalPass={true}>
+        <Bloom luminanceThreshold={0} luminanceSmoothing={0} opacity={0.35} />
+        <Noise opacity={0.045} />
+        <Vignette eskil={false} offset={0.1} darkness={0.8} />
+      </EffectComposer>
     </>
   );
 }
@@ -75,10 +74,6 @@ function Scene() {
 function LoadingScreen() {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
 
-  return (
-    <Html fullscreen>
-      {!mode && <button onClick={(e) => setMode("start")}>Start</button>}
-    </Html>
-  );
+  return !mode && <button onClick={(e) => setMode("start")}>Start</button>;
 }
 export default App;

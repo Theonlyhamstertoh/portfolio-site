@@ -1,6 +1,6 @@
 import { a } from "@react-spring/three";
 import { MeshDistortMaterial, Html, Stars } from "@react-three/drei";
-import { extend, useFrame } from "@react-three/fiber";
+import { extend, useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState, useEffect } from "react";
 import useCustomSpring from "../hooks/useCustomSpring";
 import useAudio from "../hooks/useAudio";
@@ -54,7 +54,8 @@ export function MorphingBall() {
 
 function BigWeiboName({}) {
   const groupRef = useRef();
-
+  const { mouse } = useThree();
+  console.log(mouse);
   function getMousePosition(e) {
     const xPosition = e.clientX / window.innerWidth - 0.5;
     const yPosition = e.clientY / window.innerHeight - 0.5;
