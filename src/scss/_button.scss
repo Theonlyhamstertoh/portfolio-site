@@ -4,6 +4,8 @@
   border-radius: 7px;
   font-weight: 700;
   transition: all linear 200ms;
+  letter-spacing: 0.08em;
+  font-family: "URWDIN-Regular";
 
   .primaryButton {
     @extend .buttonContainer;
@@ -17,6 +19,7 @@
 
   .secondaryButton {
     @extend .buttonContainer;
+
     border: 2px solid #8f8d7f;
     width: 150px;
     background-color: transparent;

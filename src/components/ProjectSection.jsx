@@ -1,49 +1,36 @@
-import { a, config, useTransition } from "@react-spring/web";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useState } from "react";
 import projects from "../js/projects_data";
 import SkillTag from "./SkillTag";
-import * as THREE from "three";
-import { Image } from "@react-three/drei";
-import useStore from "./useStore";
+import Section from "./Section";
 export default function ProjectSection({ children }) {
   return (
-    <section className="scrollContainer">
-      <div className="flex">
-        <h1>FEATURED PROJECTS</h1>
-        <img className="line" src="/icons/long line.svg" />
-      </div>
+    <Section
+      className="addPageMargin scrollContainer"
+      title="FEATURED PROJECTS"
+    >
       {/* Map through every project and display them */}
-      {projects.map((project, i) => (
+      {projects.map((project, i, array) => (
         <div key={`${project.title}-${i}`}>
           <div className="projectSection">
             {/* Project images */}
-            <ProjectImage project={project} />
+            <img src={project.photoUrl} className="projectImage" />
             {/* Container for project information */}
             <ProjectInfoContainer project={project} i={i} />
           </div>
-          <div style={{ textAlign: "center" }}>
-            <img className="line" src="/icons/long line.svg" />
-          </div>
+          {i !== projects.length - 1 && (
+            <div style={{ textAlign: "center" }}>
+              <img className="line" src="/icons/long line.svg" />
+            </div>
+          )}
         </div>
       ))}
-    </section>
-  );
-}
-
-function ProjectImage({ project }) {
-  return (
-    <img
-      src={project.photoUrl}
-      className="projectImage"
-      // onPointerOver={over}
-      // onPointerOut={out}
-    />
+    </Section>
   );
 }
 
 function ProjectInfoContainer({ project, i }) {
-  const { size } = useThree();
+  const size = useThree((state) => state.size);
 
   return (
     <div
@@ -68,6 +55,7 @@ function ProjectInfoContainer({ project, i }) {
     </div>
   );
 }
+
 function ProjectCodeAndLiveButtons({ githubUrl, liveDemoUrl }) {
   return (
     <div className="flex-center buttonContainer ">

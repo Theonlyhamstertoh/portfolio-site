@@ -14,13 +14,11 @@ import GlitteringStars from "./components/GlitteringStars";
 import useStore from "./components/useStore";
 import {
   Bloom,
-  DepthOfField,
   EffectComposer,
   Noise,
-  Outline,
-  Select,
   Vignette,
 } from "@react-three/postprocessing";
+import Section from "./components/Section";
 function App() {
   return (
     <>
@@ -51,13 +49,14 @@ function Scene() {
           <Preload />
           <Scroll>
             <MorphingBall />
-          </Scroll>
-          <Scroll>
             <GlitteringStars />
           </Scroll>
           <Scroll html>
             <LoadingScreen />
+            <MenuNavigator />
+            <Section title="ABOUT ME"></Section>
             <ProjectSection />
+            <ContactSection />
           </Scroll>
         </ScrollControls>
       </Suspense>
@@ -71,9 +70,48 @@ function Scene() {
   );
 }
 
+function ContactSection() {
+  return (
+    <Section title="" className="scrollContainer">
+      <div className="flex-center flexCol addMedMargin yellow">
+        <p>Reach out to me through email or social media</p>
+        <h1 className="email">weibozhang50@gmail.com</h1>
+        <div className="flex-center">
+          <a target="_blank" href="https://github.com/Theonlyhamstertoh">
+            <img src="/icons/github.svg" />
+          </a>
+          <a
+            target="_blank"
+            href="www.linkedin.com/in/weibozhang
+"
+          >
+            <img src="/icons/linkedin.svg" />
+          </a>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 function LoadingScreen() {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
 
   return !mode && <button onClick={(e) => setMode("start")}>Start</button>;
 }
 export default App;
+
+function MenuNavigator() {
+  return (
+    <div className="flex-center buttonContainer">
+      <a href="#" target="_blank" className="primaryButton">
+        Contact
+      </a>
+      <a href="#" target="_blank" className="primaryButton">
+        Projects
+      </a>
+      <a href="#" target="_blank" className="primaryButton">
+        Works
+      </a>
+    </div>
+  );
+}

@@ -1,7 +1,11 @@
 .scrollContainer {
-  margin-top: 150vh;
   padding: 40px;
   width: calc(100vw - 80px);
+  position: relative;
+}
+
+.addPageMargin {
+  margin-top: 150vh;
 }
 .projectSection {
   display: flex;
@@ -80,9 +84,11 @@
 
 .projectDescription {
   color: #9d9a86;
+  font-family: "URWDIN-Regular";
   text-align: justify;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 800;
+  padding: 3px 10px;
   font-size: 15px;
 }
 .skillTagContainer {

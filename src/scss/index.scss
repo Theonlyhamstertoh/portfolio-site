@@ -4,9 +4,17 @@
 $small: 400px;
 $medium: 900px;
 
+@font-face {
+  font-family: "URWDIN-Regular";
+  src: url("../../public/fonts/URWDIN-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "URWDIN-Bold";
+  src: url("../../public/fonts/URWDIN-Bold.ttf") format("truetype");
+}
 body {
   margin: 0;
-  font-family: "M PLUS 1", "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "URWDIN-Bold", "Open Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1a1a1a;
@@ -53,6 +61,7 @@ h1 {
   color: white;
   font-weight: 800;
   font-size: 60px;
+
   margin: 0px;
   user-select: none;
   transition: all 1000ms linear 0ms;
@@ -75,9 +84,13 @@ h2 {
   font-style: normal;
   font-weight: 800;
   letter-spacing: 2px;
+
   color: #ede8be;
 }
 
+.yellow {
+  color: #ede8be;
+}
 .line {
   width: 40vw;
   padding-top: 15px;
@@ -88,13 +101,6 @@ h2 {
   }
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  gap: 10px;
-}
-
 .flex-center {
   display: flex;
   justify-content: center;
@@ -103,26 +109,26 @@ h2 {
   margin-top: 15px;
 }
 
-.flexCol {
-  // display: flex;
-  text-align: center;
-  // align-items: center;
-  // justify-self: center;
-  // flex-direction: column;
+.addMedMargin {
+  margin-top: 10vh;
+}
+.email {
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  width: fit-content;
+  font-size: 2vw;
+  font-family: "URWDIN-Regular";
+  margin: -30px 0 0 0;
+  color: #e7dfa0;
+  border-bottom: solid 2px #e7dfa0;
+  padding: 0;
+  user-select: auto;
 }
 
-.bg {
-  width: 100vw;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  will-change: opacity;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+p {
+  font-family: "URWDIN-Regular";
 }
-.bg h1 {
-  font-size: 120px;
-  color: #fff;
-  text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.4);
+
+.flexCol {
+  flex-direction: column;
 }
