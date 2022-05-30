@@ -42,7 +42,7 @@ export function MorphingBall() {
         <icosahedronBufferGeometry args={[4, 40]} />
         <Animated_MeshDistortMaterial
           wireframe={spring.wireframe}
-          speed={12}
+          speed={13}
           color={color}
           metalness={0.3}
         />

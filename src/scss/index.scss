@@ -58,7 +58,10 @@ h1 {
   transition: all 1000ms linear 0ms;
 
   @media screen and (max-width: 1300px) {
-    font-size: 36px;
+    font-size: 46px;
+  }
+  @media screen and (max-width: 635px) {
+    font-size: 30px;
   }
   @media screen and (max-width: $small) {
     font-size: 25px;
