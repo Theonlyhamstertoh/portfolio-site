@@ -52,7 +52,7 @@ function Scene() {
       <ambientLight intensity={0.15} />
       {/* <color attach="background" args={[0x1b1b1b]} /> */}
       <Suspense fallback={null}>
-        <ScrollControls damping={2} pages={10}>
+        <ScrollControls damping={4} pages={10}>
           <Preload />
           <Scroll>
             <MorphingBall />

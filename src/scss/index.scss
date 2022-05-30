@@ -1,5 +1,9 @@
 @use "./projectSection";
 @use "./button";
+
+$small: 400px;
+$medium: 900px;
+
 body {
   margin: 0;
   font-family: "M PLUS 1", "Open Sans", "Helvetica Neue", sans-serif;
@@ -51,6 +55,10 @@ h1 {
   font-size: 60px;
   margin: 0px;
   user-select: none;
+
+  @media screen and (max-width: $small) {
+    font-size: 20px;
+  }
 }
 
 h2 {
