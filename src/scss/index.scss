@@ -111,13 +111,17 @@ h3 {
   color: #ede8be;
 }
 .line {
-  width: auto;
+  width: 400px;
   height: 10px;
   padding-top: 15px;
 
-  @media screen and (max-width: $small) {
+  @media screen and (max-width: 1000px) {
     padding-top: 5px;
     width: 180px;
+  }
+  @media screen and (max-width: 700px) {
+    padding-top: 5px;
+    width: 120px;
   }
 }
 
