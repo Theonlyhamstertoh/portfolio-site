@@ -5,10 +5,7 @@ import SkillTag from "./SkillTag";
 import Section from "./Section";
 export default function ProjectSection({ children }) {
   return (
-    <Section
-      className="addPageMargin scrollContainer"
-      title="FEATURED PROJECTS"
-    >
+    <Section className="scrollContainer" title="FEATURED PROJECTS">
       {/* Map through every project and display them */}
       {projects.map((project, i, array) => (
         <div key={`${project.title}-${i}`}>

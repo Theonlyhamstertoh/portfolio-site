@@ -1,6 +1,7 @@
 import { MeshDistortMaterial, Html, Stars } from "@react-three/drei";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState, useEffect } from "react";
+import MenuNavigator from "./MenuNavigator";
 
 export default function BigWeiboName({}) {
   const groupRef = useRef();

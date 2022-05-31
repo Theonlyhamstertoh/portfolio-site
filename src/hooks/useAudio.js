@@ -4,14 +4,17 @@ import { suspend } from "suspend-react";
 import { createAudio } from "../createAudio";
 export default function useAudio() {
   const mode = useStore((state) => state.mode);
-  const { gain, context, update } = mode === "start" && intializeAudioData();
+  const { gain, context, update, source } =
+    mode === "start" && intializeAudioData();
   useEffect(() => {
     console.log(mode);
     if (mode === "start") {
       // Connect the gain node, which plays the audio
       gain.connect(context.destination);
       // Disconnect it on unmount
-      return () => gain.disconnect();
+      return () => {
+        gain.disconnect();
+      };
     }
   }, [gain, context, mode]);
 

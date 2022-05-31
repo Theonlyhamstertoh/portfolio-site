@@ -25,7 +25,7 @@ body {
 .background {
   mix-blend-mode: multiply;
   position: absolute;
-  opacity: 0.6;
+  opacity: 0.4;
   width: 100vw;
   height: 100vh;
 }
@@ -88,13 +88,32 @@ h2 {
   color: #ede8be;
 }
 
+h3 {
+  font-size: 30px;
+  color: #dbd6b5e7;
+
+  font-family: "URWDIN-REGULAR";
+  font-weight: 400;
+  text-align: center;
+  margin: auto;
+  width: auto;
+  max-width: 1000px;
+  white-space: pre-line;
+  transition: all 1000ms linear 0ms;
+
+  @media screen and (max-width: 635px) {
+    font-size: 20px;
+    width: auto;
+  }
+}
+
 .yellow {
   color: #ede8be;
 }
 .line {
   width: 40vw;
+  height: 5px;
   padding-top: 15px;
-  padding-left: 20px;
 
   @media screen and (max-width: $small) {
     padding-top: 5px;
@@ -112,11 +131,14 @@ h2 {
 .addMedMargin {
   margin-top: 10vh;
 }
+
+.addBigMargin {
+  margin-top: 90vh;
+}
 .email {
   font-weight: 400;
   letter-spacing: 0.08em;
   width: fit-content;
-  font-size: 2vw;
   font-family: "URWDIN-Regular";
   margin: -30px 0 0 0;
   color: #e7dfa0;
@@ -127,8 +149,63 @@ h2 {
 
 p {
   font-family: "URWDIN-Regular";
+
+  @media screen and (max-width: 635px) {
+    font-size: 12px;
+  }
 }
 
 .flexCol {
   flex-direction: column;
+}
+
+.weibo-logo {
+  width: 40px;
+  cursor: pointer;
+  margin: 10px 0 0 10px;
+  transition: all 100ms linear 0ms;
+
+  &:hover {
+    width: 45px;
+  }
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.startIcon {
+  animation: 2s infinite alternate opacity;
+  user-select: none;
+}
+.startButton {
+  font-size: 15px;
+  border-radius: 7px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-family: "URWDIN-Bold";
+  width: 120px;
+  background: #c6c2a3;
+  padding: 6px 6px;
+  border: none;
+  transition: all 100ms linear 0ms;
+  cursor: pointer;
+  &:hover {
+    width: 150px;
+    background: #f1de54;
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0.9;
+    padding: 0;
+  }
+  to {
+    opacity: 0.2;
+    padding-bottom: 20px;
+  }
 }

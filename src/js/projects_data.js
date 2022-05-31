@@ -51,14 +51,22 @@ const projects = [
       "A fully packed weather forecast that feature hour by hour weather reports in addition to any city and location by using OpenWeatherMap API with async/await and fetch",
     liveDemoUrl: "https://theonlyhamstertoh.github.io/weatherapp/",
   },
-  // {
-  //   title: "",
-  //   photos: [],
-  //   tools: [],
-  //   githubUrl: "",
-  //   description: "",
-  //   liveDemoUrl: "",
-  // },
+  {
+    title: "3D Maze Runner ",
+    photoUrl: "project-showcase/maze-runner.png",
+    tools: [
+      "threejs",
+      "react-three-fiber",
+      "react",
+      "vite",
+      "zustand",
+      "useCannon",
+    ],
+    githubUrl: "https://github.com/Theonlyhamstertoh/maze-runner",
+    description:
+      "A 3D infinite maze runner where the player must move through the maze to find a flag that then generates a new maze. It is implemented with recursive backtrackin galgorithm, utilizing cannonJS and threeJS for physical collision and 3D.",
+    liveDemoUrl: "https://maze-runner-theta.vercel.app/",
+  },
 ];
 
 export default projects;
