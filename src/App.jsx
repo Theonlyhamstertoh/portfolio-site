@@ -102,10 +102,10 @@ function Scene() {
                 Hi! I'm <strong>Weibo Zhang!</strong> I build things for the
                 web. I'm a college student and still figuring out my path.
                 During the time I am not coding, I enjoy filming and
-                photographing with my camera the everyday moments. I strive to
-                continously push myself to face discomfort. If you would like to
-                contact me, don't hesitate! My email is at the bottom of this
-                page. See you around :))
+                photographing with my camera. I strive to continuously push
+                myself to face discomfort. If you would like to contact me,
+                don't hesitate! My email is at the bottom of this page. See you
+                around :))
               </h3>
             </Section>
             <ProjectSection />
