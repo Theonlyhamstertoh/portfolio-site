@@ -17,7 +17,7 @@ export default function GlitteringStars({ volumeFrequency }) {
     <Stars
       ref={starsRef}
       radius={50}
-      depth={80}
+      depth={30}
       count={7000}
       factor={4}
       saturation={0}

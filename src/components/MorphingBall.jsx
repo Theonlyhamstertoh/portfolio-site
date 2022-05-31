@@ -39,10 +39,10 @@ export function MorphingBall() {
         onPointerOver={(e) => setHovered(true)}
         onPointerOut={(e) => setHovered(false)}
       >
-        <icosahedronBufferGeometry args={[4, 40]} />
+        <icosahedronBufferGeometry args={[4, 35]} />
         <Animated_MeshDistortMaterial
           wireframe={spring.wireframe}
-          speed={13}
+          speed={15}
           color={color}
           metalness={0.3}
         />

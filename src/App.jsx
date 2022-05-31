@@ -81,7 +81,7 @@ function Scene() {
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <Suspense fallback={null}>
-        <ScrollControls damping={4} pages={10}>
+        <ScrollControls damping={4} pages={8}>
           <Preload />
           <Scroll>
             <MorphingBall />
@@ -113,7 +113,7 @@ function Scene() {
       </Suspense>
       <Loader />
       <EffectComposer multisampling={0} disableNormalPass={true}>
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0} opacity={0.35} />
+        <Bloom luminanceThreshold={0} luminanceSmoothing={0} opacity={0.45} />
         <Noise opacity={0.045} />
         <Vignette eskil={false} offset={0.1} darkness={0.8} />
       </EffectComposer>
