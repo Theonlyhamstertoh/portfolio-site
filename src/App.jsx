@@ -111,7 +111,7 @@ function Scene() {
           <Scroll></Scroll>
         </ScrollControls>
       </Suspense>
-
+      <Loader />
       <EffectComposer multisampling={0} disableNormalPass={true}>
         <Bloom luminanceThreshold={0} luminanceSmoothing={0} opacity={0.35} />
         <Noise opacity={0.045} />
