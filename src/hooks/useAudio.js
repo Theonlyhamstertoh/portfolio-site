@@ -23,7 +23,7 @@ export default function useAudio() {
 
 function intializeAudioData() {
   return suspend(
-    () => createAudio("/audio/500miles.opus"),
-    ["/audio/500miles.opus"]
+    () => createAudio("/audio/Just the Two of Us.m4a"),
+    ["/audio/Just the Two of Us.m4a"]
   );
 }
