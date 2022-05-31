@@ -81,7 +81,7 @@ function Scene() {
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <Suspense fallback={null}>
-        <ScrollControls damping={4} pages={8}>
+        <ScrollControls damping={4} pages={7}>
           <Preload />
           <Scroll>
             <MorphingBall />
