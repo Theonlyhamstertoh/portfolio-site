@@ -16,6 +16,7 @@ export default function BigWeiboName({}) {
     <group ref={groupRef}>
       <Html transform position={[0, 0, 2]} zIndexRange={[0, 0]}>
         <h1>WEIBO ZHANG</h1>
+        <h2 style={{ fontSize: "10px" }}>Just The Two Of Us | Bill Withers</h2>
       </Html>
     </group>
   );
