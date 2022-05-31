@@ -36,10 +36,6 @@ function App() {
 
 function LoadingScreen() {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
-
-  useEffect(() => {
-    console.log(mode);
-  });
   return (
     !mode && (
       <Route path="/">
@@ -47,7 +43,7 @@ function LoadingScreen() {
         <Link href="/home" onClick={() => setMode("start")}>
           <button
             style={{
-              top: "62%",
+              top: "65%",
             }}
             className="startButton centered"
           >
@@ -110,6 +106,7 @@ function Scene() {
             </Section>
             <ProjectSection />
             <ContactSection />
+            {/* <YoutubeEmbed embedId="GlTuk1wAlvI" /> */}
           </Scroll>
           <Scroll></Scroll>
         </ScrollControls>
@@ -124,4 +121,17 @@ function Scene() {
   );
 }
 
+const YoutubeEmbed = ({ embedId }) => (
+  <div className="video-responsive">
+    <iframe
+      width="853"
+      height="480"
+      src={`https://www.youtube.com/embed/${embedId}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Embedded youtube"
+    />
+  </div>
+);
 export default App;
