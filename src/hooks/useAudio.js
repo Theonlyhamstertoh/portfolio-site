@@ -7,7 +7,6 @@ export default function useAudio() {
   const { gain, context, update, source } =
     mode === "start" && intializeAudioData();
   useEffect(() => {
-    console.log(mode);
     if (mode === "start") {
       // Connect the gain node, which plays the audio
       gain.connect(context.destination);

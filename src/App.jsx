@@ -1,12 +1,12 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import {
   Html,
-  Loader,
   PerspectiveCamera,
   Preload,
   Scroll,
   ScrollControls,
+  useProgress,
 } from "@react-three/drei";
 useStore;
 import { MorphingBall } from "./components/MorphingBall";
@@ -59,10 +59,9 @@ function CanvasContainer() {
   return (
     <Route path="/home">
       <img src="/background.png" className="background" />
-      <Canvas>
+      <Canvas dpr={1}>
         <Scene />
       </Canvas>
-      <Loader />
     </Route>
   );
 }
@@ -81,18 +80,16 @@ function Scene() {
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <Suspense fallback={null}>
-        <ScrollControls damping={4} pages={7.2}>
+        <ScrollControls damping={6} pages={7}>
           <Preload />
           <Scroll>
             <MorphingBall />
             <GlitteringStars />
           </Scroll>
           <Scroll html>
-            {/* <LoadingScreen /> */}
             <Link href="/" onClick={() => setMode(false)}>
               <img className="weibo-logo" src="/icons/weibo-logo.svg" />
             </Link>
-            {/* <MenuNavigator /> */}
             <Section title="" className="addPageMargin scrollContainer">
               <h3 className="addMedMargin">
                 Hi! I'm <strong>Weibo Zhang!</strong> I build things for the
@@ -111,7 +108,6 @@ function Scene() {
           <Scroll></Scroll>
         </ScrollControls>
       </Suspense>
-      <Loader />
       <EffectComposer multisampling={0} disableNormalPass={true}>
         <Bloom luminanceThreshold={0} luminanceSmoothing={0} opacity={0.45} />
         <Noise opacity={0.045} />
@@ -134,4 +130,5 @@ const YoutubeEmbed = ({ embedId }) => (
     />
   </div>
 );
+
 export default App;
