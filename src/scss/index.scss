@@ -88,6 +88,22 @@ h2 {
   color: #ede8be;
 }
 
+.credits {
+  font-size: 10px;
+
+  font-family: "URWDIN-REGULAR";
+  font-weight: 800;
+  text-align: center;
+  margin: auto;
+  width: auto;
+  max-width: 1000px;
+  transition: all 1000ms linear 0ms;
+
+  @media screen and (max-width: 635px) {
+    font-size: 6px;
+    width: auto;
+  }
+}
 h3 {
   font-size: 30px;
   color: #dbd6b5e7;
