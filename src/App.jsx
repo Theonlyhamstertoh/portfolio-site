@@ -59,7 +59,7 @@ function CanvasContainer() {
   return (
     <Route path="/home">
       <img src="/background.png" className="background" />
-      <Canvas dpr={1}>
+      <Canvas dpr={1} performance={2}>
         <Scene />
       </Canvas>
     </Route>
@@ -80,7 +80,7 @@ function Scene() {
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
       <Suspense fallback={null}>
-        <ScrollControls damping={6} pages={7}>
+        <ScrollControls damping={6} pages={9}>
           <Preload />
           <Scroll>
             <MorphingBall />
