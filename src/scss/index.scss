@@ -37,6 +37,13 @@ a {
   color: black;
 }
 
+.bunny {
+  width: 29px;
+  height: 30px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+}
 html,
 body,
 #root {
@@ -90,10 +97,12 @@ h2 {
 
 .credits {
   font-size: 10px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "URWDIN-REGULAR";
   font-weight: 800;
-  text-align: center;
+  // text-align: center;
   margin: auto;
   width: auto;
   max-width: 1000px;

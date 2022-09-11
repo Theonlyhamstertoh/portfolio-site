@@ -16,7 +16,12 @@ export default function BigWeiboName({}) {
     <group ref={groupRef}>
       <Html transform position={[0, 0, 2]} zIndexRange={[0, 0]}>
         <h1>WEIBO ZHANG</h1>
-        <p className="credits">Just The Two Of Us | Bill Withers</p>
+        <p className="credits">
+          Fukashigi no Carte |
+          <a href="https://myanimelist.net/anime/37450/Seishun_Buta_Yarou_wa_Bunny_Girl_Senpai_no_Yume_wo_Minai">
+            <img class="bunny" src="/bunny girl.png" />
+          </a>
+        </p>
       </Html>
     </group>
   );

@@ -13,12 +13,7 @@ import { MorphingBall } from "./components/MorphingBall";
 import ProjectSection from "./components/ProjectSection";
 import GlitteringStars from "./components/GlitteringStars";
 import useStore from "./components/useStore";
-import {
-  Bloom,
-  EffectComposer,
-  Noise,
-  Vignette,
-} from "@react-three/postprocessing";
+import { Bloom, EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
 import Section from "./components/Section";
 import ContactSection from "./components/ContactSection";
 import MenuNavigator from "./components/MenuNavigator";
@@ -59,7 +54,7 @@ function CanvasContainer() {
   return (
     <Route path="/home">
       <img src="/background.png" className="background" />
-      <Canvas dpr={1} performance={2}>
+      <Canvas dpr={1} performance={{ min: 0.1 }}>
         <Scene />
       </Canvas>
     </Route>
@@ -70,12 +65,7 @@ function Scene() {
   const [setMode] = useStore((state) => [state.setMode]);
   return (
     <>
-      <PerspectiveCamera
-        makeDefault
-        ref={virtualCamera}
-        name="Camera"
-        position={[0, 0, 15]}
-      >
+      <PerspectiveCamera makeDefault ref={virtualCamera} name="Camera" position={[0, 0, 15]}>
         <pointLight castShadow intensity={1} />
       </PerspectiveCamera>
       <ambientLight intensity={0.15} />
@@ -92,20 +82,17 @@ function Scene() {
             </Link>
             <Section title="" className="addPageMargin scrollContainer">
               <h3 className="addMedMargin">
-                Hi! I'm <strong>Weibo Zhang!</strong> I build things for the
-                web. I'm a college student and still figuring out my path.
-                During the time I am not coding, I enjoy filming and
-                photographing with my camera. I strive to continuously push
-                myself to face discomfort. If you would like to contact me,
-                don't hesitate! My email is at the bottom of this page. See you
-                around :))
+                Hi! I'm <strong>Weibo Zhang!</strong> I build things for the web. I'm a college
+                student and still figuring out my path. During the time I am not coding, I enjoy
+                filming and photographing with my camera. I strive to continuously push myself to
+                face discomfort. If you would like to contact me, don't hesitate! My email is at the
+                bottom of this page. See you around :))
               </h3>
             </Section>
             <ProjectSection />
             <ContactSection />
             {/* <YoutubeEmbed embedId="GlTuk1wAlvI" /> */}
           </Scroll>
-          <Scroll></Scroll>
         </ScrollControls>
       </Suspense>
       <EffectComposer multisampling={0} disableNormalPass={true}>
