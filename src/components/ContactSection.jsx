@@ -12,7 +12,7 @@ export default function ContactSection() {
           </a>
           <a
             target="_blank"
-            href="www.linkedin.com/in/weibozhang
+            href="https://linkedin.com/in/weibozhang
   "
           >
             <img src="/icons/linkedin.svg" />
