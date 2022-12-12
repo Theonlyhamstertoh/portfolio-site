@@ -21,7 +21,7 @@ export default function useAudio() {
 
 function intializeAudioData() {
   return suspend(
-    () => createAudio("/audio/Fukashigi no Carte.m4a"),
-    ["/audio/Fukashigi no Carte.m4a"]
+    () => createAudio("/audio/Just the Two of Us.m4a"),
+    ["/audio/Just the Two of Us.m4a"]
   );
 }
