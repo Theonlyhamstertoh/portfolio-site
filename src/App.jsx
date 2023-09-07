@@ -24,37 +24,37 @@ function App() {
     return (
         <>
             <CanvasContainer />
-            <LoadingScreen />
+            {/* <LoadingScreen /> */}
         </>
     );
 }
 
-function LoadingScreen() {
-    const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
-    return (
-        !mode && (
-            <Route path="/">
-                <img src="/icons/weibo-logo.svg" className="centered startIcon" />
-                <Link href="/home" onClick={() => setMode("start")}>
-                    <button
-                        style={{
-                            top: "65%",
-                        }}
-                        className="startButton centered"
-                    >
-                        Enter
-                    </button>
-                </Link>
-            </Route>
-        )
-    );
-}
+// function LoadingScreen() {
+//     const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
+//     return (
+//         !mode && (
+//             <Route path="/">
+//                 <img src="/icons/weibo-logo.svg" className="centered startIcon" />
+//                 <Link href="/home" onClick={() => setMode("start")}>
+//                     <button
+//                         style={{
+//                             top: "65%",
+//                         }}
+//                         className="startButton centered"
+//                     >
+//                         Enter
+//                     </button>
+//                 </Link>
+//             </Route>
+//         )
+//     );
+// }
 
 function CanvasContainer() {
     const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
 
     return (
-        <Route path="/home">
+        <Route path="/">
             <img src="/background.png" className="background" />
             <button className="play-button" onClick={() => setMode("start")}>
                 <svg
