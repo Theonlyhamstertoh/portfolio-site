@@ -1,0 +1,8 @@
+{
+    "redirects": [
+        {
+            "source": "/blog/:path*/",
+            "destination": "https://blog.weibozhang.com/blog/:path*/"
+        }
+    ]
+}
