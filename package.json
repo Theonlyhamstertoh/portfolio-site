@@ -1,29 +1,32 @@
 {
-  "name": "portfolio-site",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^1.3.2",
-    "vite": "^2.9.16"
-  },
-  "dependencies": {
-    "@react-spring/three": "^9.7.3",
-    "@react-spring/web": "^9.7.3",
-    "@react-three/drei": "^9.83.3",
-    "@react-three/fiber": "^8.14.1",
-    "@react-three/postprocessing": "^2.15.1",
-    "randomcolor": "^0.6.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.66.1",
-    "suspend-react": "^0.0.8",
-    "three": "^0.139.2",
-    "wouter": "^2.11.0",
-    "zustand": "^3.7.2"
-  }
+    "name": "portfolio-site",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^1.3.2",
+        "vite": "^2.9.16"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "@react-spring/three": "^9.7.3",
+        "@react-spring/web": "^9.7.3",
+        "@react-three/drei": "^9.83.3",
+        "@react-three/fiber": "^8.14.1",
+        "@react-three/postprocessing": "^2.15.1",
+        "randomcolor": "^0.6.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sass": "^1.66.1",
+        "suspend-react": "^0.0.8",
+        "three": "^0.139.2",
+        "wouter": "^2.11.0",
+        "zustand": "^3.7.2"
+    }
 }
